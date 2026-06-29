@@ -1,0 +1,12 @@
+# Données source brutes — NE PAS publier.
+# Contient toute la PII de la consultation : noms, courriels et réponses
+# complètes au sondage. Les artefacts du dépôt sont anonymisés (user_id seulement);
+# sans ce fichier, la correspondance user_id -> personne n'est pas reconstituable.
+raw/
+
+# Caches Python
+__pycache__/
+*.pyc
+
+# Réglages locaux de l'outil (spécifiques à la machine)
+.claude/settings.local.json

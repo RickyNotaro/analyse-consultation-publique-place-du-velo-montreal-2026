@@ -1,0 +1,201 @@
+category,rank,user_id,likes_given
+Appreciated,1,19019,146
+Appreciated,2,50569,144
+Appreciated,3,18309,108
+Appreciated,4,19009,93
+Appreciated,5,51506,89
+Appreciated,6,51512,88
+Appreciated,7,51631,63
+Appreciated,8,49044,62
+Appreciated,9,23025,58
+Appreciated,10,51083,58
+Appreciated,11,51715,56
+Appreciated,12,48647,52
+Appreciated,13,48033,51
+Appreciated,14,51681,49
+Appreciated,15,20447,48
+Appreciated,16,23154,47
+Appreciated,17,48631,44
+Appreciated,18,51307,43
+Appreciated,19,49464,43
+Appreciated,20,48238,43
+Appreciated,21,18316,41
+Appreciated,22,49440,39
+Appreciated,23,48665,38
+Appreciated,24,46655,36
+Appreciated,25,48137,36
+Appreciated,26,47607,36
+Appreciated,27,51409,36
+Appreciated,28,17968,35
+Appreciated,29,50396,34
+Appreciated,30,48301,33
+Appreciated,31,18475,32
+Appreciated,32,19020,31
+Appreciated,33,23021,31
+Appreciated,34,51359,31
+Appreciated,35,48140,31
+Appreciated,36,43376,31
+Appreciated,37,48837,30
+Appreciated,38,51703,30
+Appreciated,39,51577,28
+Appreciated,40,48161,27
+Appreciated,41,49215,27
+Appreciated,42,49064,26
+Appreciated,43,49600,26
+Appreciated,44,48162,24
+Appreciated,45,51375,24
+Appreciated,46,42332,23
+Appreciated,47,48464,23
+Appreciated,48,51612,22
+Appreciated,49,50792,22
+Appreciated,50,50001,22
+Needs improvement,1,19019,225
+Needs improvement,2,48301,174
+Needs improvement,3,51398,70
+Needs improvement,4,51083,68
+Needs improvement,5,48140,62
+Needs improvement,6,51375,62
+Needs improvement,7,51656,54
+Needs improvement,8,48647,49
+Needs improvement,9,49394,48
+Needs improvement,10,49600,47
+Needs improvement,11,18309,47
+Needs improvement,12,23025,41
+Needs improvement,13,48316,40
+Needs improvement,14,49215,39
+Needs improvement,15,49090,37
+Needs improvement,16,51377,35
+Needs improvement,17,18475,35
+Needs improvement,18,50516,34
+Needs improvement,19,49772,33
+Needs improvement,20,51024,29
+Needs improvement,21,49147,28
+Needs improvement,22,48162,28
+Needs improvement,23,18316,27
+Needs improvement,24,51612,27
+Needs improvement,25,48238,27
+Needs improvement,26,19009,26
+Needs improvement,27,51289,26
+Needs improvement,28,23079,25
+Needs improvement,29,49850,25
+Needs improvement,30,18756,25
+Needs improvement,31,48464,24
+Needs improvement,32,51359,24
+Needs improvement,33,46655,23
+Needs improvement,34,49046,23
+Needs improvement,35,50039,23
+Needs improvement,36,51050,23
+Needs improvement,37,19171,23
+Needs improvement,38,51658,22
+Needs improvement,39,35535,22
+Needs improvement,40,48033,22
+Needs improvement,41,50670,22
+Needs improvement,42,20248,22
+Needs improvement,43,48445,21
+Needs improvement,44,48965,21
+Needs improvement,45,51499,21
+Needs improvement,46,51441,21
+Needs improvement,47,50697,19
+Needs improvement,48,51098,18
+Needs improvement,49,51661,18
+Needs improvement,50,48665,18
+Missing path,1,19019,427
+Missing path,2,48301,192
+Missing path,3,18475,172
+Missing path,4,50569,134
+Missing path,5,51512,119
+Missing path,6,18309,110
+Missing path,7,51398,102
+Missing path,8,51083,95
+Missing path,9,48140,79
+Missing path,10,23025,78
+Missing path,11,19171,75
+Missing path,12,50670,69
+Missing path,13,48033,68
+Missing path,14,51577,61
+Missing path,15,49600,61
+Missing path,16,19880,60
+Missing path,17,20248,51
+Missing path,18,50668,49
+Missing path,19,48238,47
+Missing path,20,49044,46
+Missing path,21,18756,46
+Missing path,22,48136,46
+Missing path,23,48647,45
+Missing path,24,35535,43
+Missing path,25,20447,42
+Missing path,26,48316,41
+Missing path,27,49215,40
+Missing path,28,19009,40
+Missing path,29,17968,39
+Missing path,30,49064,38
+Missing path,31,49517,37
+Missing path,32,33218,36
+Missing path,33,48162,36
+Missing path,34,51631,35
+Missing path,35,46655,34
+Missing path,36,18316,34
+Missing path,37,48137,32
+Missing path,38,49046,29
+Missing path,39,50363,29
+Missing path,40,23154,28
+Missing path,41,32141,27
+Missing path,42,51050,27
+Missing path,43,18289,26
+Missing path,44,49908,25
+Missing path,45,19647,25
+Missing path,46,51612,24
+Missing path,47,50006,24
+Missing path,48,20122,24
+Missing path,49,50342,23
+Missing path,50,50001,22
+To be removed,1,24489,202
+To be removed,2,51675,75
+To be removed,3,23634,74
+To be removed,4,51308,37
+To be removed,5,50161,37
+To be removed,6,51493,29
+To be removed,7,51588,27
+To be removed,8,23962,26
+To be removed,9,51603,13
+To be removed,10,23994,12
+To be removed,11,51649,8
+To be removed,12,49770,6
+To be removed,13,50060,6
+To be removed,14,51679,4
+To be removed,15,51437,4
+To be removed,16,51722,3
+To be removed,17,49839,3
+To be removed,18,51565,3
+To be removed,19,51398,2
+To be removed,20,48238,2
+To be removed,21,48033,2
+To be removed,22,51551,2
+To be removed,23,49464,2
+To be removed,24,23858,2
+To be removed,25,34231,1
+To be removed,26,49044,1
+To be removed,27,48464,1
+To be removed,28,51542,1
+To be removed,29,50697,1
+To be removed,30,18518,1
+To be removed,31,51474,1
+To be removed,32,18308,1
+To be removed,33,50276,1
+To be removed,34,42933,1
+To be removed,35,51473,1
+To be removed,36,51252,1
+To be removed,37,22963,1
+To be removed,38,51166,1
+To be removed,39,51528,1
+To be removed,40,19008,1
+To be removed,41,19019,1
+To be removed,42,32141,1
+To be removed,43,50046,1
+To be removed,44,50246,1
+To be removed,45,48175,1
+To be removed,46,51556,1
+To be removed,47,51711,1
+To be removed,48,51600,1
+To be removed,49,18373,1
+To be removed,50,51435,1

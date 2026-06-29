@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultation sur le plan vélo — Analyse des marqueurs de carte</title>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/css/tabler.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.17.0/dist/tabler-icons.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  html{scroll-behavior:smooth}
+  section{scroll-margin-top:1rem}
+  .chart-wrap{position:relative}
+  .navbar-vertical .nav-link{padding-top:.35rem;padding-bottom:.35rem}
+  .lead-quote{border-left:4px solid var(--tblr-green);padding-left:1rem}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
+        <span class="navbar-toggler-icon"></span></button>
+      <h1 class="navbar-brand fs-3 mb-0"><i class="ti ti-bike me-2"></i>Plan vélo</h1>
+      <div class="collapse navbar-collapse" id="sidebar-menu">
+        <ul class="navbar-nav pt-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#resume"><i class="ti ti-home me-2"></i>Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="#categories"><i class="ti ti-chart-donut me-2"></i>Catégories</a></li>
+          <li class="nav-item"><a class="nav-link" href="#engagement"><i class="ti ti-heart me-2"></i>Engagement</a></li>
+          <li class="nav-item"><a class="nav-link" href="#positions"><i class="ti ti-scale me-2"></i>Pour vs contre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#carte"><i class="ti ti-map-2 me-2"></i>Carte & points chauds</a></li>
+          <li class="nav-item"><a class="nav-link" href="#corridors"><i class="ti ti-road me-2"></i>Corridors</a></li>
+          <li class="nav-item"><a class="nav-link" href="#concentration"><i class="ti ti-chart-line me-2"></i>Concentration</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reseau"><i class="ti ti-affiliate me-2"></i>Réseau</a></li>
+          <li class="nav-item"><a class="nav-link" href="#themes"><i class="ti ti-message me-2"></i>Thèmes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#personnes"><i class="ti ti-users me-2"></i>Personnes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#methodo"><i class="ti ti-info-circle me-2"></i>Méthodologie</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <div class="page-wrapper">
+    <div class="page-body">
+      <div class="container-xl">
+
+      <!-- ============ RÉSUMÉ ============ -->
+      <section id="resume">
+        <div class="page-header"><div>
+          <div class="page-pretitle">Consultation publique · agglomération de Montréal · question 11865</div>
+          <h2 class="page-title fs-1">Une minorité bruyante contre une majorité pro-vélo</h2>
+          <p class="text-secondary mt-2" style="max-width:820px">Analyse des <b id="tm"></b> marqueurs de
+            carte déposés par <b id="ta"></b> participants. La plupart réclament des infrastructures
+            cyclables <b>plus nombreuses et de meilleure qualité</b>; les demandes de retrait proviennent
+            d'une poignée d'usagers très actifs et n'ont récolté presque aucun appui.</p>
+        </div></div>
+
+        <div class="row row-deck row-cards">
+          <div class="col-sm-6 col-lg-3"><div class="card card-sm"><div class="card-body"><div class="row align-items-center">
+            <div class="col-auto"><span class="bg-green text-white avatar"><i class="ti ti-thumb-up"></i></span></div>
+            <div class="col"><div class="h1 mb-0 text-green"><span id="s1">0</span>%</div>
+              <div class="text-secondary">des marqueurs veulent <b>plus / mieux</b></div></div></div></div></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="card card-sm"><div class="card-body"><div class="row align-items-center">
+            <div class="col-auto"><span class="bg-red text-white avatar"><i class="ti ti-thumb-down"></i></span></div>
+            <div class="col"><div class="h1 mb-0 text-red"><span id="s2">0</span>%</div>
+              <div class="text-secondary">veulent un <b>retrait</b> <span id="s2b"></span></div></div></div></div></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="card card-sm"><div class="card-body"><div class="row align-items-center">
+            <div class="col-auto"><span class="bg-orange text-white avatar"><i class="ti ti-users-group"></i></span></div>
+            <div class="col"><div class="h1 mb-0 text-orange"><span id="s3">0</span>%</div>
+              <div class="text-secondary">des marqueurs de retrait viennent de <b>3 usagers</b></div></div></div></div></div></div>
+          <div class="col-sm-6 col-lg-3"><div class="card card-sm"><div class="card-body"><div class="row align-items-center">
+            <div class="col-auto"><span class="bg-green text-white avatar"><i class="ti ti-heart"></i></span></div>
+            <div class="col"><div class="h1 mb-0 text-green"><span id="s4">0</span>%</div>
+              <div class="text-secondary">des <b>j'aime</b> vont aux marqueurs pro-vélo</div></div></div></div></div></div>
+        </div>
+
+        <div class="card mt-1"><div class="card-body">
+          <p class="lead-quote mb-0">En comptant <b>une personne, un vote</b>, la part des demandes de
+          retrait tombe de <b>11,8 % à 7,6 %</b>. Même sur Henri-Bourassa — le corridor le plus visé par
+          le retrait (108 marqueurs « À retirer ») — seulement <b>19 personnes sont contre</b> contre
+          <b>100 pour</b>. L'opposition est réelle mais étroite et concentrée.</p>
+        </div></div>
+      </section>
+
+      <!-- ============ CATÉGORIES ============ -->
+      <section id="categories" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-chart-donut me-2 text-purple"></i>Répartition par catégorie</h2>
+        <div class="row row-cards">
+          <div class="col-lg-5"><div class="card"><div class="card-body">
+            <div class="chart-wrap" style="height:320px"><canvas id="catDoughnut"></canvas></div></div></div></div>
+          <div class="col-lg-7"><div class="card"><div class="card-body">
+            <p class="text-secondary">Près de <b>7 marqueurs sur 10 (68,6 %)</b> signalent une lacune ou un
+            problème (voie manquante + à améliorer). À peine ~1 sur 5 célèbre l'existant, et les demandes
+            de retrait forment le plus petit groupe.</p>
+            <div class="chart-wrap" style="height:230px"><canvas id="catBar"></canvas></div></div></div></div>
+        </div>
+      </section>
+
+      <!-- ============ ENGAGEMENT ============ -->
+      <section id="engagement" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-heart me-2 text-red"></i>Engagement & priorités de la communauté</h2>
+        <div class="row row-cards">
+          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">J'aime moyens par catégorie</h3></div>
+            <div class="card-body"><p class="text-secondary">Les marqueurs « À retirer » reçoivent de loin le
+              moins de j'aime — le public ne se rallie pas derrière eux.</p>
+              <div class="chart-wrap" style="height:280px"><canvas id="avgLikes"></canvas></div></div></div></div>
+          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">Total de j'aime par catégorie</h3></div>
+            <div class="card-body"><p class="text-secondary"><b id="tl"></b> j'aime au total · moyenne 3,84 ·
+              78 % des marqueurs ont au moins un j'aime. La « voie manquante » récolte le plus de j'aime.</p>
+              <div class="chart-wrap" style="height:280px"><canvas id="totLikes"></canvas></div></div></div></div>
+        </div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Marqueurs les plus aimés (priorités citoyennes)</h3></div>
+          <div class="table-responsive"><table class="table table-vcenter card-table">
+            <thead><tr><th class="text-center">J'aime</th><th>Catégorie</th><th>Commentaire</th></tr></thead>
+            <tbody><tr><td class='text-center'><span class='badge bg-azure-lt'>40</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>Dangereux entre la rue du Quai de l&#x27;horloge et Saint-Laurent. Nous sommes jetes directement vers les piétons et touristes.</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>39</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>Axe dangereux</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>37</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>L&#x27;avenue du Parc est très dangereuse pour les cyclistes et les piétons, cela ressemble e un autoroute en pleine ville. Il faut un lien cyclable protege unidirec</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>35</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>Area needs a dedicated bike path to connect</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>32</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>Desperate need for a dedicated cycle path in this highly used corridor. There&#x27;s so much space. Priority for pedestrians and cyclists alike.</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>31</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>Il faut ajouter un axe separe physiquement</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>31</span></td><td><span class="badge bg-green-lt">Apprécié</span></td><td>La piste cyclable en site propre est nettement mieux que l&#x27;ancienne configuration. Il faut absolument completer le projet tel qu&#x27;annonce au depart.</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>31</span></td><td><span class="badge bg-yellow-lt">À améliorer</span></td><td>Tellement de vélos sur la piste sur Rachel, il faudrait 2 pistes unidirectionelles.</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>30</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>Piste cyclable manquante sur l&#x27;avenue du Parc. Incroyablement dangereux de rouler ici.</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>30</span></td><td><span class="badge bg-green-lt">Apprécié</span></td><td>Lien cyclable essentiel pour la securites des mouvements est-ouest dans l&#x27;axe. Les autres options ne sont pas securitaires ou lineaires.</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>29</span></td><td><span class="badge bg-green-lt">Apprécié</span></td><td>La piste cyclable sur la rue de Verdun est une amélioration notable pour la mobilité de touetees dans l&#x27;arrondissement de Verdun.</td></tr><tr><td class='text-center'><span class='badge bg-azure-lt'>29</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td>Manque de continuité de la piste</td></tr></tbody></table></div></div>
+      </section>
+
+      <!-- ============ POUR VS CONTRE ============ -->
+      <section id="positions" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-scale me-2 text-azure"></i>Pour ou contre l'infrastructure cyclable ?</h2>
+        <div class="row row-cards">
+          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">Qu'est-ce que les gens ont demandé ?</h3>
+            <div class="card-actions"><button class="btn btn-sm" id="doToggle">Par personnes</button></div></div>
+            <div class="card-body"><p class="text-secondary" id="doTake"></p>
+              <div class="chart-wrap" style="height:280px"><canvas id="doughnut"></canvas></div></div></div></div>
+          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">Une personne, un vote — le retrait rétrécit</h3>
+            <div class="card-actions"><button class="btn btn-sm" id="toggle">Une personne, un vote</button></div></div>
+            <div class="card-body"><p class="text-secondary">Compter chaque marqueur également surévalue les
+              usagers prolifiques. Vue : <b class="text-green" id="modeLabel">Comptes bruts</b>.</p>
+              <div class="chart-wrap" style="height:280px"><canvas id="bars"></canvas></div></div></div></div>
+        </div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">À quel point chaque camp est-il concentré ?</h3></div>
+          <div class="card-body">
+            <p class="text-secondary">Glissez le curseur : part des marqueurs <span class="text-green">pro</span> vs
+              <span class="text-red">retrait</span> provenant des usagers les plus actifs. Le retrait est bien plus concentré.</p>
+            <input type="range" class="form-range" id="cSlide" min="1" max="60" value="3">
+            <div class="h3 mt-2 mb-3">Les <span id="cN">3</span> usagers les plus actifs ont placé
+              <span class="text-green"><span id="cPro"></span> des marqueurs pro</span> ·
+              <span class="text-red"><span id="cRem"></span> des marqueurs de retrait</span></div>
+            <div class="chart-wrap" style="height:280px"><canvas id="conc"></canvas></div></div></div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Qui demande le retrait ? (anonymisé)</h3></div>
+          <div class="card-body"><p class="text-secondary">Les demandes de retrait sont très concentrées : un
+            seul usager en a placé 116 (29,6 % de la catégorie), et le top 3 représente <b id="t3"></b>.</p>
+            <div class="chart-wrap" style="height:340px"><canvas id="removers"></canvas></div></div></div>
+      </section>
+
+      <!-- ============ CARTE ============ -->
+      <section id="carte" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-map-2 me-2 text-purple"></i>Carte interactive & points chauds</h2>
+        <div class="card"><div class="card-header"><h3 class="card-title">Carte des 3 333 marqueurs</h3></div>
+          <div class="card-body text-center">
+            <p class="text-secondary">Aperçu géographique par catégorie. La <b>carte interactive</b> complète
+              (groupes de marqueurs, infobulles, couches activables, chaleur des j'aime) s'ouvre dans un
+              nouvel onglet — elle est volontairement séparée car elle charge 3 333 marqueurs.</p>
+            <img src="output/charts/spatial_scatter.png" class="img-fluid rounded border mb-3"
+              style="max-width:580px" alt="Emplacement des marqueurs par catégorie">
+            <div><a class="btn btn-primary" href="output/map.html" target="_blank"><i class="ti ti-map-2 me-1"></i>Ouvrir la carte interactive</a></div>
+          </div></div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Principaux points chauds (cellules de ~300 m)</h3></div>
+          <div class="card-body"><p class="text-secondary mb-0">176 cellules contiennent ≥5 marqueurs
+            (1 580 marqueurs). Deux pôles dominent : le <b>Vieux-Port / centre-ville est</b> et
+            <b>l'avenue du Parc</b>, tous deux signalés <i>manquants</i> et <i>dangereux</i>. Dans les 7
+            cellules à dominante de retrait, les marqueurs « Apprécié » récoltent <b>395 j'aime</b> contre
+            <b>183</b> pour le retrait (2,2×).</p></div>
+          <div class="table-responsive"><table class="table table-vcenter card-table">
+            <thead><tr><th class="text-center">Marq.</th><th class="text-center">J'aime</th><th>Catégorie dominante</th>
+              <th>Localisation</th><th>Commentaire représentatif</th></tr></thead>
+            <tbody><tr><td class='text-center'>24</td><td class='text-center'><span class='badge bg-azure-lt'>263</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td class='text-secondary'>45.5074, -73.5518</td><td>Dangereux entre la rue du Quai de l&#x27;horloge et Saint-Laurent. Nous sommes jetes directement vers les piétons et touristes.</td></tr><tr><td class='text-center'>34</td><td class='text-center'><span class='badge bg-azure-lt'>214</span></td><td><span class="badge bg-red-lt">À retirer</span></td><td class='text-secondary'>45.5531, -73.6693</td><td>Une superbe piste qui permet de traverser rapidement le quartier. Cela sera encore mieux quand elle sera completee</td></tr><tr><td class='text-center'>17</td><td class='text-center'><span class='badge bg-azure-lt'>173</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td class='text-secondary'>45.5096, -73.5507</td><td>Area needs a dedicated bike path to connect</td></tr><tr><td class='text-center'>21</td><td class='text-center'><span class='badge bg-azure-lt'>144</span></td><td><span class="badge bg-yellow-lt">À améliorer</span></td><td class='text-secondary'>45.5097, -73.5667</td><td>Une des intersections les plus dangereuses pour les cyclistes e montréal (arret de bus dans la bande cyclable, denivele, aucune separation entre les vélos et le</td></tr><tr><td class='text-center'>26</td><td class='text-center'><span class='badge bg-azure-lt'>142</span></td><td><span class="badge bg-red-lt">À retirer</span></td><td class='text-secondary'>45.5477, -73.6726</td><td>Piste cyclable importante et structurant e ne pas elever</td></tr><tr><td class='text-center'>27</td><td class='text-center'><span class='badge bg-azure-lt'>139</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td class='text-secondary'>45.5230, -73.6039</td><td>Piste cyclable manquante sur l&#x27;avenue du Parc. Incroyablement dangereux de rouler ici.</td></tr><tr><td class='text-center'>21</td><td class='text-center'><span class='badge bg-azure-lt'>129</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td class='text-secondary'>45.5212, -73.6000</td><td>Une piste unidirectionnel est une necessite et est très importante pour la sécurité de tous</td></tr><tr><td class='text-center'>19</td><td class='text-center'><span class='badge bg-azure-lt'>128</span></td><td><span class="badge bg-green-lt">Apprécié</span></td><td class='text-secondary'>45.5451, -73.6733</td><td>Bravo pour cet aménagement. Adoucit la circulation pour les deux écoles primaires e proximite.</td></tr><tr><td class='text-center'>11</td><td class='text-center'><span class='badge bg-azure-lt'>112</span></td><td><span class="badge bg-yellow-lt">À améliorer</span></td><td class='text-secondary'>45.5290, -73.5707</td><td>Tellement de vélos sur la piste sur Rachel, il faudrait 2 pistes unidirectionelles.</td></tr><tr><td class='text-center'>14</td><td class='text-center'><span class='badge bg-azure-lt'>110</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td class='text-secondary'>45.4992, -73.5707</td><td>REV Peel e completer au moins jusqu&#x27;e Maisonneuve.</td></tr><tr><td class='text-center'>14</td><td class='text-center'><span class='badge bg-azure-lt'>109</span></td><td><span class="badge bg-purple-lt">Voie manquante</span></td><td class='text-secondary'>45.5184, -73.5929</td><td>L&#x27;avenue du Parc est très dangereuse pour les cyclistes et les piétons, cela ressemble e un autoroute en pleine ville. Il faut un lien cyclable protege unidirec</td></tr><tr><td class='text-center'>21</td><td class='text-center'><span class='badge bg-azure-lt'>107</span></td><td><span class="badge bg-red-lt">À retirer</span></td><td class='text-secondary'>45.5551, -73.6682</td><td>Besoin de plus lien comme celui ci !</td></tr></tbody></table></div></div>
+        <div class="card mt-1"><div class="card-body">
+          <div class="text-secondary mb-2">Cartes complémentaires (vues techniques) :</div>
+          <div class="btn-list">
+            <a class="btn btn-outline-primary" href="experiments/output/net_sentiment_map.html" target="_blank"><i class="ti ti-map me-1"></i>Sentiment net (apprécié vs retrait)</a>
+            <a class="btn btn-outline-primary" href="experiments/output/blended_map.html" target="_blank"><i class="ti ti-map me-1"></i>Marqueurs pondérés / grille dominante</a>
+            <a class="btn btn-outline-primary" href="experiments/output/weighted_map.html" target="_blank"><i class="ti ti-map me-1"></i>Densité brute vs pondérée</a>
+          </div></div></div>
+      </section>
+
+      <!-- ============ CORRIDORS ============ -->
+      <section id="corridors" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-road me-2 text-green"></i>Corridors : personnes uniques, pour vs contre</h2>
+        <div class="row row-cards">
+          <div class="col-lg-7"><div class="card"><div class="card-body">
+            <p class="text-secondary">Chaque barre = personnes distinctes ayant participé (créé <b>ou</b> aimé
+              un marqueur), scindées par position. <b>Chaque corridor est massivement pour.</b></p>
+            <div class="chart-wrap" style="height:420px"><canvas id="corridorsChart"></canvas></div></div></div></div>
+          <div class="col-lg-5"><div class="card"><div class="card-header"><h3 class="card-title">Détail par corridor</h3></div>
+            <div class="table-responsive" style="max-height:440px;overflow:auto"><table class="table table-sm table-vcenter card-table">
+              <thead><tr><th>Corridor</th><th class="text-center">Pers.</th><th class="text-center">Pour</th>
+                <th class="text-center">Mixte</th><th class="text-center">Contre</th>
+                <th class="text-center">Marq.</th><th class="text-center">J'aime</th></tr></thead>
+              <tbody><tr><td>Saint-Denis</td><td class='text-center'><b>173</b></td><td class='text-center text-green'>168</td><td class='text-center'>1</td><td class='text-center text-red'>4</td><td class='text-center text-secondary'>64</td><td class='text-center text-secondary'>459</td></tr><tr><td>Avenue du Parc</td><td class='text-center'><b>156</b></td><td class='text-center text-green'>144</td><td class='text-center'>3</td><td class='text-center text-red'>9</td><td class='text-center text-secondary'>112</td><td class='text-center text-secondary'>479</td></tr><tr><td>Saint-Laurent (boul.)</td><td class='text-center'><b>149</b></td><td class='text-center text-green'>142</td><td class='text-center'>0</td><td class='text-center text-red'>7</td><td class='text-center text-secondary'>102</td><td class='text-center text-secondary'>311</td></tr><tr><td>De Maisonneuve</td><td class='text-center'><b>146</b></td><td class='text-center text-green'>141</td><td class='text-center'>2</td><td class='text-center text-red'>3</td><td class='text-center text-secondary'>70</td><td class='text-center text-secondary'>395</td></tr><tr><td>Rachel</td><td class='text-center'><b>142</b></td><td class='text-center text-green'>140</td><td class='text-center'>0</td><td class='text-center text-red'>2</td><td class='text-center text-secondary'>52</td><td class='text-center text-secondary'>323</td></tr><tr><td>Henri-Bourassa</td><td class='text-center'><b>121</b></td><td class='text-center text-green'>100</td><td class='text-center'>2</td><td class='text-center text-red'>19</td><td class='text-center text-secondary'>174</td><td class='text-center text-secondary'>649</td></tr><tr><td>Christophe-Colomb</td><td class='text-center'><b>111</b></td><td class='text-center text-green'>107</td><td class='text-center'>0</td><td class='text-center text-red'>4</td><td class='text-center text-secondary'>29</td><td class='text-center text-secondary'>189</td></tr><tr><td>Saint-Urbain</td><td class='text-center'><b>107</b></td><td class='text-center text-green'>104</td><td class='text-center'>0</td><td class='text-center text-red'>3</td><td class='text-center text-secondary'>68</td><td class='text-center text-secondary'>273</td></tr><tr><td>Sherbrooke</td><td class='text-center'><b>105</b></td><td class='text-center text-green'>101</td><td class='text-center'>2</td><td class='text-center text-red'>2</td><td class='text-center text-secondary'>63</td><td class='text-center text-secondary'>223</td></tr><tr><td>Berri</td><td class='text-center'><b>101</b></td><td class='text-center text-green'>100</td><td class='text-center'>0</td><td class='text-center text-red'>1</td><td class='text-center text-secondary'>26</td><td class='text-center text-secondary'>218</td></tr><tr><td>Rene-Levesque</td><td class='text-center'><b>83</b></td><td class='text-center text-green'>79</td><td class='text-center'>0</td><td class='text-center text-red'>4</td><td class='text-center text-secondary'>39</td><td class='text-center text-secondary'>152</td></tr><tr><td>Peel</td><td class='text-center'><b>81</b></td><td class='text-center text-green'>81</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>30</td><td class='text-center text-secondary'>229</td></tr><tr><td>De la Commune</td><td class='text-center'><b>61</b></td><td class='text-center text-green'>61</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>13</td><td class='text-center text-secondary'>115</td></tr><tr><td>Notre-Dame</td><td class='text-center'><b>56</b></td><td class='text-center text-green'>54</td><td class='text-center'>0</td><td class='text-center text-red'>2</td><td class='text-center text-secondary'>26</td><td class='text-center text-secondary'>76</td></tr><tr><td>Verdun</td><td class='text-center'><b>56</b></td><td class='text-center text-green'>54</td><td class='text-center'>0</td><td class='text-center text-red'>2</td><td class='text-center text-secondary'>23</td><td class='text-center text-secondary'>100</td></tr><tr><td>Papineau</td><td class='text-center'><b>52</b></td><td class='text-center text-green'>52</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>15</td><td class='text-center text-secondary'>53</td></tr><tr><td>Jarry</td><td class='text-center'><b>47</b></td><td class='text-center text-green'>41</td><td class='text-center'>5</td><td class='text-center text-red'>1</td><td class='text-center text-secondary'>37</td><td class='text-center text-secondary'>150</td></tr><tr><td>Viau</td><td class='text-center'><b>41</b></td><td class='text-center text-green'>41</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>11</td><td class='text-center text-secondary'>55</td></tr><tr><td>Wellington</td><td class='text-center'><b>33</b></td><td class='text-center text-green'>33</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>12</td><td class='text-center text-secondary'>66</td></tr><tr><td>Lasalle</td><td class='text-center'><b>31</b></td><td class='text-center text-green'>29</td><td class='text-center'>0</td><td class='text-center text-red'>2</td><td class='text-center text-secondary'>12</td><td class='text-center text-secondary'>54</td></tr><tr><td>Cote-des-Neiges</td><td class='text-center'><b>27</b></td><td class='text-center text-green'>27</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>9</td><td class='text-center text-secondary'>32</td></tr><tr><td>De Lorimier</td><td class='text-center'><b>20</b></td><td class='text-center text-green'>19</td><td class='text-center'>0</td><td class='text-center text-red'>1</td><td class='text-center text-secondary'>8</td><td class='text-center text-secondary'>15</td></tr><tr><td>Pie-IX</td><td class='text-center'><b>13</b></td><td class='text-center text-green'>13</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>5</td><td class='text-center text-secondary'>10</td></tr><tr><td>Cote-Sainte-Catherine</td><td class='text-center'><b>7</b></td><td class='text-center text-green'>7</td><td class='text-center'>0</td><td class='text-center text-red'>0</td><td class='text-center text-secondary'>3</td><td class='text-center text-secondary'>8</td></tr></tbody></table></div></div></div>
+        </div>
+      </section>
+
+      <!-- ============ CONCENTRATION ============ -->
+      <section id="concentration" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-chart-line me-2 text-pink"></i>Concentration de la participation</h2>
+        <div class="card"><div class="card-body">
+          <p class="text-secondary">La participation est très inégale : Gini de <b>0,62</b> (marqueurs créés),
+            <b>0,67</b> (j'aime donnés) et <b>0,71</b> (j'aime reçus). Le 10 % d'usagers les plus actifs
+            représente ~51–60 % de toute l'activité — ce qui motive la pondération « une personne, un vote ».</p>
+          <img src="experiments/output/concentration_lorenz.png" class="img-fluid rounded border" style="max-width:680px"
+            alt="Courbes de Lorenz de la concentration de la participation">
+        </div></div>
+      </section>
+
+      <!-- ============ RÉSEAU ============ -->
+      <section id="reseau" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-affiliate me-2 text-azure"></i>Réseau d'engagement (deux camps)</h2>
+        <div class="card"><div class="card-body">
+          <p class="text-secondary">Réseau de co-appréciation des 140 usagers les plus actifs (deux usagers
+            sont reliés s'ils ont aimé les mêmes marqueurs). On distingue une grande masse pro-infrastructure
+            (3 communautés, 0 % de j'aime de retrait) et <b>un petit groupe détaché de 8 usagers à 95 % de
+            j'aime de retrait</b> — confirmation visuelle d'une opposition concentrée et distincte.</p>
+          <img src="experiments/output/engagement_network.png" class="img-fluid rounded border"
+            alt="Réseau de co-appréciation, deux camps">
+        </div></div>
+      </section>
+
+      <!-- ============ THÈMES ============ -->
+      <section id="themes" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-message me-2 text-orange"></i>Thèmes textuels</h2>
+        <div class="row row-cards">
+          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">Termes les plus fréquents</h3></div>
+            <div class="card-body"><div class="chart-wrap" style="height:420px"><canvas id="terms"></canvas></div></div></div></div>
+          <div class="col-lg-6">
+            <div class="card"><div class="card-header"><h3 class="card-title">Termes distinctifs par catégorie</h3></div>
+              <div class="table-responsive"><table class="table table-vcenter card-table">
+                <tbody><tr><td><span class="badge bg-green-lt">Apprécié</span></td><td class='text-secondary'>lien, apprecie, rev, pratique, securitaire, belle, bonne, permet</td></tr><tr><td><span class="badge bg-yellow-lt">À améliorer</span></td><td class='text-secondary'>intersection, voitures, dangereuse, dangereux, bande, cyclistes, velo, velos</td></tr><tr><td><span class="badge bg-purple-lt">Voie manquante</span></td><td class='text-secondary'>rev, lien, parc, manque, saint, nord, dangereux, velo</td></tr><tr><td><span class="badge bg-red-lt">À retirer</span></td><td class='text-secondary'>henri bourassa, parc, bourassa, henri, svp, inutile, traffic, arterielle</td></tr></tbody></table></div></div>
+            <div class="card mt-1"><div class="card-header"><h3 class="card-title">Regroupements thématiques (KMeans)</h3></div>
+              <div class="table-responsive"><table class="table table-sm table-vcenter card-table">
+                <thead><tr><th class="text-center">Taille</th><th>Termes</th><th>Exemple</th></tr></thead>
+                <tbody><tr><td class='text-center'><b>2705</b></td><td class='text-secondary'>lien, parc, dangereux, velo, cyclistes, intersection</td><td>« Dangereux entre la rue du Quai de l&#x27;horloge et Saint-Laurent. Nous sommes jetes directement vers les piétons et touristes. »</td></tr><tr><td class='text-center'><b>265</b></td><td class='text-secondary'>rev, saint, jarry, rev jarry, rev sherbrooke, sherbrooke</td><td>« Depuis que le REV est present sur Saint-Denis, la vitalite commerciale explose. L&#x27;occupation des locaux est enfin e un niveau eleve, apres u »</td></tr><tr><td class='text-center'><b>144</b></td><td class='text-secondary'>nord, sud, nord sud, lien, lien nord, manque</td><td>« Lien cyclable sur Saint-Urbain qui ne retire aucune capacite routiere (en bord de rue e la place du stationnement), axe deje present mais sé »</td></tr><tr><td class='text-center'><b>111</b></td><td class='text-secondary'>bike, path, bike path, lane, bike lane, street</td><td>« Area needs a dedicated bike path to connect »</td></tr><tr><td class='text-center'><b>69</b></td><td class='text-secondary'>tout henri, traffic arrete, metres feux, inutile tout, feux rouges, c&#x27;est traffic</td><td>« Inutile sur tout Henri Bourassa ! C&#x27;est dans le Traffic et on arrête e tous les 100 mètres pour des feux rouges. »</td></tr><tr><td class='text-center'><b>39</b></td><td class='text-secondary'>arterielle, reseau arterielle, reseau, nuis reseau, nuis, nuit reseau</td><td>« Nuis aux réseau artérielle »</td></tr></tbody></table></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PERSONNES ============ -->
+      <section id="personnes" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-users me-2 text-blue"></i>Classements de personnes (anonymisé)</h2>
+        <p class="text-secondary">Les usagers sont désignés par leur identifiant numérique seulement. Top 10
+          par catégorie; listes complètes (top 20 créateurs, top 50 donneurs) dans les CSV du dépôt.</p>
+        <div class="card"><div class="card-header"><h3 class="card-title">Principaux créateurs (marqueurs placés)</h3></div>
+          <div class="table-responsive"><table class="table table-sm table-vcenter card-table">
+            <thead><tr><th>#</th><th>🟢 Apprécié</th><th>🟡 À améliorer</th><th>🟣 Voie manquante</th><th>🔴 À retirer</th></tr></thead>
+            <tbody><tr><td class='text-secondary'>1</td><td>usager 50161 <span class='text-secondary'>— 30</span></td><td>usager 48301 <span class='text-secondary'>— 48</span></td><td>usager 50046 <span class='text-secondary'>— 97</span></td><td>usager 23634 <span class='text-secondary'>— 116</span></td></tr><tr><td class='text-secondary'>2</td><td>usager 43376 <span class='text-secondary'>— 28</span></td><td>usager 48647 <span class='text-secondary'>— 26</span></td><td>usager 48301 <span class='text-secondary'>— 37</span></td><td>usager 51264 <span class='text-secondary'>— 69</span></td></tr><tr><td class='text-secondary'>3</td><td>usager 48033 <span class='text-secondary'>— 19</span></td><td>usager 48333 <span class='text-secondary'>— 19</span></td><td>usager 19647 <span class='text-secondary'>— 30</span></td><td>usager 51626 <span class='text-secondary'>— 66</span></td></tr><tr><td class='text-secondary'>4</td><td>usager 51315 <span class='text-secondary'>— 19</span></td><td>usager 49215 <span class='text-secondary'>— 19</span></td><td>usager 19019 <span class='text-secondary'>— 27</span></td><td>usager 49604 <span class='text-secondary'>— 19</span></td></tr><tr><td class='text-secondary'>5</td><td>usager 49846 <span class='text-secondary'>— 16</span></td><td>usager 47608 <span class='text-secondary'>— 16</span></td><td>usager 51702 <span class='text-secondary'>— 27</span></td><td>usager 51588 <span class='text-secondary'>— 12</span></td></tr><tr><td class='text-secondary'>6</td><td>usager 18293 <span class='text-secondary'>— 13</span></td><td>usager 48137 <span class='text-secondary'>— 16</span></td><td>usager 48136 <span class='text-secondary'>— 22</span></td><td>usager 51603 <span class='text-secondary'>— 11</span></td></tr><tr><td class='text-secondary'>7</td><td>usager 50569 <span class='text-secondary'>— 12</span></td><td>usager 19019 <span class='text-secondary'>— 15</span></td><td>usager 43693 <span class='text-secondary'>— 20</span></td><td>usager 24489 <span class='text-secondary'>— 10</span></td></tr><tr><td class='text-secondary'>8</td><td>usager 19009 <span class='text-secondary'>— 11</span></td><td>usager 43376 <span class='text-secondary'>— 14</span></td><td>usager 43376 <span class='text-secondary'>— 18</span></td><td>usager 48993 <span class='text-secondary'>— 10</span></td></tr><tr><td class='text-secondary'>9</td><td>usager 23610 <span class='text-secondary'>— 11</span></td><td>usager 48739 <span class='text-secondary'>— 14</span></td><td>usager 48251 <span class='text-secondary'>— 16</span></td><td>usager 49770 <span class='text-secondary'>— 10</span></td></tr><tr><td class='text-secondary'>10</td><td>usager 43693 <span class='text-secondary'>— 11</span></td><td>usager 18415 <span class='text-secondary'>— 13</span></td><td>usager 51577 <span class='text-secondary'>— 16</span></td><td>usager 23994 <span class='text-secondary'>— 7</span></td></tr></tbody></table></div></div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Principaux donneurs de j'aime</h3></div>
+          <div class="table-responsive"><table class="table table-sm table-vcenter card-table">
+            <thead><tr><th>#</th><th>🟢 Apprécié</th><th>🟡 À améliorer</th><th>🟣 Voie manquante</th><th>🔴 À retirer</th></tr></thead>
+            <tbody><tr><td class='text-secondary'>1</td><td>usager 19019 <span class='text-secondary'>— 146</span></td><td>usager 19019 <span class='text-secondary'>— 225</span></td><td>usager 19019 <span class='text-secondary'>— 427</span></td><td>usager 24489 <span class='text-secondary'>— 202</span></td></tr><tr><td class='text-secondary'>2</td><td>usager 50569 <span class='text-secondary'>— 144</span></td><td>usager 48301 <span class='text-secondary'>— 174</span></td><td>usager 48301 <span class='text-secondary'>— 192</span></td><td>usager 51675 <span class='text-secondary'>— 75</span></td></tr><tr><td class='text-secondary'>3</td><td>usager 18309 <span class='text-secondary'>— 108</span></td><td>usager 51398 <span class='text-secondary'>— 70</span></td><td>usager 18475 <span class='text-secondary'>— 172</span></td><td>usager 23634 <span class='text-secondary'>— 74</span></td></tr><tr><td class='text-secondary'>4</td><td>usager 19009 <span class='text-secondary'>— 93</span></td><td>usager 51083 <span class='text-secondary'>— 68</span></td><td>usager 50569 <span class='text-secondary'>— 134</span></td><td>usager 51308 <span class='text-secondary'>— 37</span></td></tr><tr><td class='text-secondary'>5</td><td>usager 51506 <span class='text-secondary'>— 89</span></td><td>usager 48140 <span class='text-secondary'>— 62</span></td><td>usager 51512 <span class='text-secondary'>— 119</span></td><td>usager 50161 <span class='text-secondary'>— 37</span></td></tr><tr><td class='text-secondary'>6</td><td>usager 51512 <span class='text-secondary'>— 88</span></td><td>usager 51375 <span class='text-secondary'>— 62</span></td><td>usager 18309 <span class='text-secondary'>— 110</span></td><td>usager 51493 <span class='text-secondary'>— 29</span></td></tr><tr><td class='text-secondary'>7</td><td>usager 51631 <span class='text-secondary'>— 63</span></td><td>usager 51656 <span class='text-secondary'>— 54</span></td><td>usager 51398 <span class='text-secondary'>— 102</span></td><td>usager 51588 <span class='text-secondary'>— 27</span></td></tr><tr><td class='text-secondary'>8</td><td>usager 49044 <span class='text-secondary'>— 62</span></td><td>usager 48647 <span class='text-secondary'>— 49</span></td><td>usager 51083 <span class='text-secondary'>— 95</span></td><td>usager 23962 <span class='text-secondary'>— 26</span></td></tr><tr><td class='text-secondary'>9</td><td>usager 23025 <span class='text-secondary'>— 58</span></td><td>usager 49394 <span class='text-secondary'>— 48</span></td><td>usager 48140 <span class='text-secondary'>— 79</span></td><td>usager 51603 <span class='text-secondary'>— 13</span></td></tr><tr><td class='text-secondary'>10</td><td>usager 51083 <span class='text-secondary'>— 58</span></td><td>usager 49600 <span class='text-secondary'>— 47</span></td><td>usager 23025 <span class='text-secondary'>— 78</span></td><td>usager 23994 <span class='text-secondary'>— 12</span></td></tr></tbody></table></div></div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Contributeurs les plus prolifiques</h3></div>
+          <div class="card-body"><div class="chart-wrap" style="height:360px"><canvas id="contributors"></canvas></div></div></div>
+      </section>
+
+      <!-- ============ MÉTHODOLOGIE ============ -->
+      <section id="methodo" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-info-circle me-2 text-secondary"></i>Méthodologie & anonymisation</h2>
+        <div class="card"><div class="card-body">
+          <ul class="text-secondary">
+            <li><b>Source :</b> question 11865 (carte interactive) d'une consultation publique sur le plan
+              vélo de la région de Montréal — <b id="tm3"></b> marqueurs, <b id="ta3"></b> participants.</li>
+            <li><b>Anonymisation :</b> aucun nom n'est diffusé; les usagers sont désignés par leur
+              <code>user_id</code> (un pseudonyme). Le fichier source brut (noms, courriels, réponses
+              complètes) n'est pas versionné.</li>
+            <li><b>Réserve résiduelle :</b> le texte libre des commentaires, les coordonnées exactes et la
+              carte interactive (qui affiche chaque commentaire) sont inclus tels quels et pourraient, à la
+              marge, permettre une réidentification.</li>
+            <li><b>Accents :</b> les données source ont une corruption d'accents irréversible (78 % des
+              marqueurs); une réparation cosmétique au mieux est appliquée, sans effet sur les comptes.</li>
+            <li><b>Pondération :</b> « une personne, un vote » = chaque marqueur pondéré par 1 / le nombre
+              total de marqueurs de l'usager. Thèmes : TF-IDF + KMeans. Points chauds : quadrillage de ~300 m.</li>
+          </ul>
+        </div></div>
+      </section>
+
+      <footer class="footer footer-transparent mt-4"><div class="text-secondary small">
+        Analyse des marqueurs de carte — question 11865. Données anonymisées (identifiants seulement).
+      </div></footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0/dist/js/tabler.min.js"></script>
+<script>
+const DATA = {"cats": ["Appr\u00e9ci\u00e9", "\u00c0 am\u00e9liorer", "Voie manquante", "\u00c0 retirer"], "colors": ["#2ca02c", "#e6c700", "#d62fd6", "#d62728"], "counts": [654, 1038, 1249, 392], "raw_pct": [19.6, 31.1, 37.5, 11.8], "weighted_pct": [16.6, 35.0, 40.8, 7.6], "avg_likes": [5.65, 3.32, 4.04, 1.55], "total_markers": 3333, "pro_pct": 88.2, "anti_pct": 11.8, "anti_weighted_pct": 7.6, "anti_authors": 54, "total_authors": 557, "top1_share": 29.6, "top3_share": 64.0, "likes_pro_pct": 95.2, "likes_anti_pct": 4.8, "total_likes": 12791, "removal_users": [["usager 23634", 116], ["usager 51264", 69], ["usager 51626", 66], ["usager 49604", 19], ["usager 51588", 12], ["usager 51603", 11], ["usager 24489", 10], ["usager 48993", 10], ["usager 49770", 10], ["usager 23994", 7]], "ppl_pro": 503, "ppl_mix": 17, "ppl_rem": 37, "ppl_pro_pct": 90.3, "ppl_mix_pct": 3.1, "ppl_rem_pct": 6.6, "pro_counts": [112, 89, 60, 46, 44, 43, 41, 40, 38, 36, 36, 33, 29, 28, 28, 28, 28, 27, 26, 24, 24, 23, 23, 23, 23, 22, 22, 22, 21, 21, 21, 20, 20, 19, 19, 19, 19, 18, 17, 17, 16, 16, 15, 15, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "rem_counts": [116, 69, 66, 19, 12, 11, 10, 10, 10, 7, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "pro_authors": 520, "rem_authors": 54, "total_likes_by_cat": [3694, 3447, 5042, 608], "top_terms": ["lien", "rev", "parc", "dangereux", "velo", "cyclistes", "intersection", "c'est", "nord", "dangereuse", "manque", "saint", "sud", "securitaire", "velos", "voitures"], "top_contributors": [{"id": 23634, "markers": 116, "likes": 138}, {"id": 50046, "markers": 113, "likes": 444}, {"id": 48301, "markers": 89, "likes": 277}, {"id": 51264, "markers": 69, "likes": 266}, {"id": 51626, "markers": 67, "likes": 20}, {"id": 43376, "markers": 60, "likes": 673}, {"id": 51702, "markers": 46, "likes": 10}, {"id": 48033, "markers": 44, "likes": 308}, {"id": 19019, "markers": 43, "likes": 26}, {"id": 43693, "markers": 41, "likes": 184}, {"id": 19647, "markers": 40, "likes": 100}, {"id": 50161, "markers": 39, "likes": 54}], "corridors": [{"name": "Saint-Denis", "f": 168, "m": 1, "a": 4}, {"name": "Avenue du Parc", "f": 144, "m": 3, "a": 9}, {"name": "Saint-Laurent (boul.)", "f": 142, "m": 0, "a": 7}, {"name": "De Maisonneuve", "f": 141, "m": 2, "a": 3}, {"name": "Rachel", "f": 140, "m": 0, "a": 2}, {"name": "Henri-Bourassa", "f": 100, "m": 2, "a": 19}, {"name": "Christophe-Colomb", "f": 107, "m": 0, "a": 4}, {"name": "Saint-Urbain", "f": 104, "m": 0, "a": 3}, {"name": "Sherbrooke", "f": 101, "m": 2, "a": 2}, {"name": "Berri", "f": 100, "m": 0, "a": 1}, {"name": "Rene-Levesque", "f": 79, "m": 0, "a": 4}, {"name": "Peel", "f": 81, "m": 0, "a": 0}]};
+Chart.defaults.color = '#667382';
+Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+const GRID = '#e6e7e9';
+const $ = id => document.getElementById(id);
+
+const fmt = n => n.toLocaleString('fr-CA');
+$('tm').textContent = fmt(DATA.total_markers); $('tm3').textContent = fmt(DATA.total_markers);
+$('ta').textContent = fmt(DATA.total_authors); $('ta3').textContent = fmt(DATA.total_authors);
+$('tl').textContent = fmt(DATA.total_likes);
+$('t3').textContent = DATA.top3_share + ' %';
+$('s2b').innerHTML = '&mdash; <b>' + DATA.anti_weighted_pct + ' %</b> à une personne, un vote';
+
+function countUp(id, end, dec){const el=$(id),t0=performance.now(),dur=1100;
+  (function step(t){let p=Math.min((t-t0)/dur,1);p=1-Math.pow(1-p,3);
+    el.textContent=(end*p).toFixed(dec);if(p<1)requestAnimationFrame(step);})(performance.now());}
+countUp('s1',DATA.pro_pct,1);countUp('s2',DATA.anti_pct,1);countUp('s3',DATA.top3_share,0);countUp('s4',DATA.likes_pro_pct,1);
+
+// category doughnut + bar
+new Chart($('catDoughnut'),{type:'doughnut',
+  data:{labels:DATA.cats,datasets:[{data:DATA.counts,backgroundColor:DATA.colors,borderColor:'#fff',borderWidth:3}]},
+  options:{maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'bottom'},
+    tooltip:{callbacks:{label:c=>c.label+': '+fmt(c.parsed)+' ('+DATA.raw_pct[c.dataIndex]+' %)'}}},animation:{animateRotate:true,duration:1100}}});
+new Chart($('catBar'),{type:'bar',
+  data:{labels:DATA.cats,datasets:[{data:DATA.counts,backgroundColor:DATA.colors,borderRadius:4}]},
+  options:{maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},
+    scales:{x:{grid:{color:GRID},title:{display:true,text:'nombre de marqueurs'}},y:{grid:{display:false}}},animation:{duration:900}}});
+
+// avg + total likes
+new Chart($('avgLikes'),{type:'bar',
+  data:{labels:DATA.cats,datasets:[{data:DATA.avg_likes,backgroundColor:DATA.colors,borderRadius:4}]},
+  options:{maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{grid:{color:GRID},title:{display:true,text:"j'aime moy. / marqueur"}},x:{grid:{display:false}}},animation:{duration:1000}}});
+new Chart($('totLikes'),{type:'bar',
+  data:{labels:DATA.cats,datasets:[{data:DATA.total_likes_by_cat,backgroundColor:DATA.colors,borderRadius:4}]},
+  options:{maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{grid:{color:GRID},title:{display:true,text:"total de j'aime"}},x:{grid:{display:false}}},animation:{duration:1000}}});
+
+// positions doughnut markers/people
+const VIEWS={markers:{labels:['Pro-infrastructure','Veulent le retrait'],data:[DATA.pro_pct,DATA.anti_pct],
+    colors:['#2ca02c','#d62728'],take:'Près de 9 marqueurs sur 10 appuient plus ou de meilleures infrastructures cyclables.',btn:'Par personnes'},
+  people:{labels:['Pro seulement','Mixte','Retrait seulement'],data:[DATA.ppl_pro_pct,DATA.ppl_mix_pct,DATA.ppl_rem_pct],
+    colors:['#2ca02c','#e6c700','#d62728'],
+    take:'Par personne, c\'est encore plus net : '+DATA.ppl_pro_pct+' % purement pro, seulement '+DATA.ppl_rem_pct+' % uniquement retrait, '+DATA.ppl_mix_pct+' % mixtes.',btn:'Par marqueurs'}};
+const doughnut=new Chart($('doughnut'),{type:'doughnut',
+  data:{labels:VIEWS.markers.labels,datasets:[{data:VIEWS.markers.data,backgroundColor:VIEWS.markers.colors,borderColor:'#fff',borderWidth:3}]},
+  options:{maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom'},
+    tooltip:{callbacks:{label:c=>c.label+': '+c.parsed+' %'}}},animation:{animateRotate:true,duration:1100}}});
+$('doTake').textContent=VIEWS.markers.take;
+let doPeople=false;
+$('doToggle').onclick=()=>{doPeople=!doPeople;const v=doPeople?VIEWS.people:VIEWS.markers;
+  doughnut.data.labels=v.labels;doughnut.data.datasets[0].data=v.data;doughnut.data.datasets[0].backgroundColor=v.colors;doughnut.update();
+  $('doTake').textContent=v.take;$('doToggle').textContent=v.btn;};
+
+// one person one vote bars
+let weighted=false;
+const bars=new Chart($('bars'),{type:'bar',
+  data:{labels:DATA.cats,datasets:[{data:DATA.raw_pct.slice(),backgroundColor:DATA.colors,borderRadius:4}]},
+  options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' %'}}},
+    scales:{y:{grid:{color:GRID},title:{display:true,text:'% des marqueurs'},suggestedMax:45},x:{grid:{display:false}}},animation:{duration:900}}});
+function setMode(w){weighted=w;bars.data.datasets[0].data=(w?DATA.weighted_pct:DATA.raw_pct).slice();bars.update();
+  $('modeLabel').textContent=w?'Une personne, un vote':'Comptes bruts';
+  $('toggle').textContent=w?'Comptes bruts':'Une personne, un vote';}
+$('toggle').onclick=()=>setMode(!weighted);
+setTimeout(()=>setMode(true),1400);
+
+// concentration slider
+function cumArr(c){const t=c.reduce((a,b)=>a+b,0);let s=0;return c.map(x=>{s+=x;return s/t*100;});}
+const cumPro=cumArr(DATA.pro_counts),cumRem=cumArr(DATA.rem_counts);
+const MAXN=+$('cSlide').max,atN=(a,n)=>a[Math.min(n,a.length)-1],xs=Array.from({length:MAXN},(_,i)=>i+1);
+const conc=new Chart($('conc'),{type:'line',
+  data:{labels:xs,datasets:[
+    {label:'Marqueurs pro',data:xs.map(n=>atN(cumPro,n)),borderColor:'#2ca02c',backgroundColor:'rgba(44,160,44,.12)',fill:true,pointRadius:0,tension:.25},
+    {label:'Marqueurs de retrait',data:xs.map(n=>atN(cumRem,n)),borderColor:'#d62728',backgroundColor:'rgba(214,39,40,.12)',fill:true,pointRadius:0,tension:.25},
+    {label:'',data:[],borderColor:'#2ca02c',backgroundColor:'#2ca02c',showLine:false,pointRadius:6},
+    {label:'',data:[],borderColor:'#d62728',backgroundColor:'#d62728',showLine:false,pointRadius:6}]},
+  options:{maintainAspectRatio:false,plugins:{legend:{labels:{filter:i=>i.text!==''}},
+    tooltip:{callbacks:{title:c=>'Top '+c[0].label+' usagers',label:c=>c.dataset.label+' : '+c.parsed.y.toFixed(1)+' %'}}},
+    scales:{y:{min:0,max:100,grid:{color:GRID},title:{display:true,text:'% des marqueurs du camp'}},
+      x:{grid:{display:false},title:{display:true,text:'usagers les plus actifs (top N)'}}},animation:{duration:900}}});
+function setN(n){const p=atN(cumPro,n),r=atN(cumRem,n);$('cN').textContent=n;
+  $('cPro').textContent=p.toFixed(1)+' %';$('cRem').textContent=r.toFixed(1)+' %';
+  const mp=new Array(MAXN).fill(null),mr=new Array(MAXN).fill(null);mp[n-1]=p;mr[n-1]=r;
+  conc.data.datasets[2].data=mp;conc.data.datasets[3].data=mr;conc.update('none');}
+$('cSlide').oninput=e=>setN(+e.target.value);setN(3);
+
+// removal contributors
+new Chart($('removers'),{type:'bar',
+  data:{labels:DATA.removal_users.map(u=>u[0]),datasets:[{data:DATA.removal_users.map(u=>u[1]),backgroundColor:'#d62728',borderRadius:4}]},
+  options:{maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},
+    scales:{x:{grid:{color:GRID},title:{display:true,text:'marqueurs de retrait placés'}},y:{grid:{display:false}}},animation:{duration:1100}}});
+
+// corridors for/mixed/against (stacked horizontal)
+const cd=DATA.corridors.slice().reverse();
+new Chart($('corridorsChart'),{type:'bar',
+  data:{labels:cd.map(c=>c.name),datasets:[
+    {label:'Pour',data:cd.map(c=>c.f),backgroundColor:'#2ca02c'},
+    {label:'Mixte',data:cd.map(c=>c.m),backgroundColor:'#e6c700'},
+    {label:'Contre',data:cd.map(c=>c.a),backgroundColor:'#d62728'}]},
+  options:{maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{position:'bottom'}},
+    scales:{x:{stacked:true,grid:{color:GRID},title:{display:true,text:'personnes uniques'}},y:{stacked:true,grid:{display:false}}},animation:{duration:1000}}});
+
+// top terms
+new Chart($('terms'),{type:'bar',
+  data:{labels:DATA.top_terms.slice().reverse(),datasets:[{data:DATA.top_terms.map((_,i)=>DATA.top_terms.length-i).reverse(),
+    backgroundColor:'#206bc4',borderRadius:3}]},
+  options:{maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},
+    tooltip:{callbacks:{label:c=>'rang '+(DATA.top_terms.length-c.parsed.x+1)}}},
+    scales:{x:{display:false},y:{grid:{display:false}}},animation:{duration:900}}});
+
+// top contributors
+const tc=DATA.top_contributors.slice().reverse();
+new Chart($('contributors'),{type:'bar',
+  data:{labels:tc.map(c=>'usager '+c.id),datasets:[{data:tc.map(c=>c.markers),backgroundColor:'#4263eb',borderRadius:4}]},
+  options:{maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},
+    tooltip:{callbacks:{afterLabel:c=>tc[c.dataIndex].likes+" j'aime obtenus"}}},
+    scales:{x:{grid:{color:GRID},title:{display:true,text:'marqueurs placés'}},y:{grid:{display:false}}},animation:{duration:1000}}});
+</script>
+</body>
+</html>

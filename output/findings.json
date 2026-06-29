@@ -1,0 +1,639 @@
+{
+  "category_breakdown": [
+    {
+      "id": 1,
+      "label": "Appreciated",
+      "count": 654,
+      "pct": 19.6
+    },
+    {
+      "id": 2,
+      "label": "Needs improvement",
+      "count": 1038,
+      "pct": 31.1
+    },
+    {
+      "id": 3,
+      "label": "Missing path",
+      "count": 1249,
+      "pct": 37.5
+    },
+    {
+      "id": 4,
+      "label": "To be removed",
+      "count": 392,
+      "pct": 11.8
+    }
+  ],
+  "likes": {
+    "total": 12791,
+    "mean": 3.84,
+    "max": 40,
+    "with_likes": 2596,
+    "zero_likes": 737
+  },
+  "likes_by_category": [
+    {
+      "id": 1,
+      "label": "Appreciated",
+      "total_likes": 3694,
+      "avg_likes": 5.65
+    },
+    {
+      "id": 2,
+      "label": "Needs improvement",
+      "total_likes": 3447,
+      "avg_likes": 3.32
+    },
+    {
+      "id": 3,
+      "label": "Missing path",
+      "total_likes": 5042,
+      "avg_likes": 4.04
+    },
+    {
+      "id": 4,
+      "label": "To be removed",
+      "total_likes": 608,
+      "avg_likes": 1.55
+    }
+  ],
+  "top_markers": [
+    {
+      "likes": 40,
+      "category": "Missing path",
+      "text": "Dangereux entre la rue du Quai de l'horloge et Saint-Laurent. Nous sommes jetes directement vers les piétons et touristes."
+    },
+    {
+      "likes": 39,
+      "category": "Missing path",
+      "text": "Axe dangereux"
+    },
+    {
+      "likes": 37,
+      "category": "Missing path",
+      "text": "L'avenue du Parc est très dangereuse pour les cyclistes et les piétons, cela ressemble e un autoroute en pleine ville. Il faut un lien cyclable protege unidirec"
+    },
+    {
+      "likes": 35,
+      "category": "Missing path",
+      "text": "Area needs a dedicated bike path to connect"
+    },
+    {
+      "likes": 32,
+      "category": "Missing path",
+      "text": "Desperate need for a dedicated cycle path in this highly used corridor. There's so much space. Priority for pedestrians and cyclists alike."
+    },
+    {
+      "likes": 31,
+      "category": "Missing path",
+      "text": "Il faut ajouter un axe separe physiquement"
+    },
+    {
+      "likes": 31,
+      "category": "Appreciated",
+      "text": "La piste cyclable en site propre est nettement mieux que l'ancienne configuration. Il faut absolument completer le projet tel qu'annonce au depart."
+    },
+    {
+      "likes": 31,
+      "category": "Needs improvement",
+      "text": "Tellement de vélos sur la piste sur Rachel, il faudrait 2 pistes unidirectionelles."
+    },
+    {
+      "likes": 30,
+      "category": "Missing path",
+      "text": "Piste cyclable manquante sur l'avenue du Parc. Incroyablement dangereux de rouler ici."
+    },
+    {
+      "likes": 30,
+      "category": "Appreciated",
+      "text": "Lien cyclable essentiel pour la securites des mouvements est-ouest dans l'axe. Les autres options ne sont pas securitaires ou lineaires."
+    },
+    {
+      "likes": 29,
+      "category": "Appreciated",
+      "text": "La piste cyclable sur la rue de Verdun est une amélioration notable pour la mobilité de touetees dans l'arrondissement de Verdun."
+    },
+    {
+      "likes": 29,
+      "category": "Missing path",
+      "text": "Manque de continuité de la piste"
+    },
+    {
+      "likes": 29,
+      "category": "Appreciated",
+      "text": "Permet de sécuriser l'acces e une ecole"
+    },
+    {
+      "likes": 29,
+      "category": "Appreciated",
+      "text": "Depuis que le REV est present sur Saint-Denis, la vitalite commerciale explose. L'occupation des locaux est enfin e un niveau eleve, apres un creux historique a"
+    },
+    {
+      "likes": 28,
+      "category": "Missing path",
+      "text": "Mauvaise continuité de la piste sur de la Commune"
+    },
+    {
+      "likes": 28,
+      "category": "Missing path",
+      "text": "Piste manquante entre Saint-Gabriel du Quai de l'Horloge."
+    },
+    {
+      "likes": 27,
+      "category": "Appreciated",
+      "text": "Lien cyclable sur Saint-Urbain qui ne retire aucune capacite routiere (en bord de rue e la place du stationnement), axe deje present mais sécurisé avec des norm"
+    },
+    {
+      "likes": 27,
+      "category": "Missing path",
+      "text": "Axe très dangereux"
+    },
+    {
+      "likes": 27,
+      "category": "Appreciated",
+      "text": "Le REV n'est pas que pour les vélos, maintenant des enfants peuvent marcher le long du boulevard en etant mieux separe du trafic."
+    },
+    {
+      "likes": 26,
+      "category": "Appreciated",
+      "text": "Les nouvelles pistes cyclables unidirectionnelles sur Christophe-Colomb sont geniales."
+    },
+    {
+      "likes": 26,
+      "category": "Needs improvement",
+      "text": "La piste cyclable de Rachel est congestionnee et necessite un agrandissement."
+    },
+    {
+      "likes": 26,
+      "category": "Appreciated",
+      "text": "Une superbe piste qui permet de traverser rapidement le secteur. Cela sera encore mieux quand elle sera completee"
+    },
+    {
+      "likes": 26,
+      "category": "Missing path",
+      "text": "La piste s'arrete et devient une genre de terrasse partagee inutilisable."
+    },
+    {
+      "likes": 25,
+      "category": "Missing path",
+      "text": "Il n'y a plus de piste e partir de ce point et le trafic est melanger soit avec les voitures soit avec les piétons (beaucoup d'enfants et de famille) se qui cre"
+    },
+    {
+      "likes": 25,
+      "category": "Appreciated",
+      "text": "J'ai apprécié utiliser le REV Henri-Bourassa et j'ai bien hete qu'il soit complete!"
+    }
+  ],
+  "most_active_per_category": [
+    {
+      "category": "Appreciated",
+      "user_id": 50161,
+      "markers": 30,
+      "likes_earned": 34
+    },
+    {
+      "category": "Needs improvement",
+      "user_id": 48301,
+      "markers": 48,
+      "likes_earned": 140
+    },
+    {
+      "category": "Missing path",
+      "user_id": 50046,
+      "markers": 97,
+      "likes_earned": 362
+    },
+    {
+      "category": "To be removed",
+      "user_id": 23634,
+      "markers": 116,
+      "likes_earned": 138
+    }
+  ],
+  "top_contributors": [
+    {
+      "user_id": 23634,
+      "markers": 116,
+      "likes_earned": 138
+    },
+    {
+      "user_id": 50046,
+      "markers": 113,
+      "likes_earned": 444
+    },
+    {
+      "user_id": 48301,
+      "markers": 89,
+      "likes_earned": 277
+    },
+    {
+      "user_id": 51264,
+      "markers": 69,
+      "likes_earned": 266
+    },
+    {
+      "user_id": 51626,
+      "markers": 67,
+      "likes_earned": 20
+    },
+    {
+      "user_id": 43376,
+      "markers": 60,
+      "likes_earned": 673
+    },
+    {
+      "user_id": 51702,
+      "markers": 46,
+      "likes_earned": 10
+    },
+    {
+      "user_id": 48033,
+      "markers": 44,
+      "likes_earned": 308
+    },
+    {
+      "user_id": 19019,
+      "markers": 43,
+      "likes_earned": 26
+    },
+    {
+      "user_id": 43693,
+      "markers": 41,
+      "likes_earned": 184
+    },
+    {
+      "user_id": 19647,
+      "markers": 40,
+      "likes_earned": 100
+    },
+    {
+      "user_id": 50161,
+      "markers": 39,
+      "likes_earned": 54
+    },
+    {
+      "user_id": 48647,
+      "markers": 38,
+      "likes_earned": 294
+    },
+    {
+      "user_id": 49215,
+      "markers": 36,
+      "likes_earned": 180
+    },
+    {
+      "user_id": 48136,
+      "markers": 33,
+      "likes_earned": 211
+    }
+  ],
+  "contributor_stats": {
+    "unique_authors": 557,
+    "median_markers_per_author": 2.0,
+    "top1_share_pct": 3.5
+  },
+  "removal_concentration": {
+    "category_total": 392,
+    "top_opponent_id": 23634,
+    "top_opponent_markers": 116,
+    "top_opponent_share_pct": 29.6,
+    "top_opponent_all_removal": true,
+    "removal_dominant_cells": 7,
+    "likes_on_removal_in_those_cells": 183,
+    "likes_on_appreciated_in_those_cells": 395
+  },
+  "hotspots": [
+    {
+      "markers": 24,
+      "total_likes": 263,
+      "lat": 45.50736,
+      "lon": -73.55184,
+      "dominant_category": "Missing path",
+      "rep_text": "Dangereux entre la rue du Quai de l'horloge et Saint-Laurent. Nous sommes jetes directement vers les piétons et touristes.",
+      "rep_likes": 40
+    },
+    {
+      "markers": 34,
+      "total_likes": 214,
+      "lat": 45.55307,
+      "lon": -73.66929,
+      "dominant_category": "To be removed",
+      "rep_text": "Une superbe piste qui permet de traverser rapidement le quartier. Cela sera encore mieux quand elle sera completee",
+      "rep_likes": 22
+    },
+    {
+      "markers": 17,
+      "total_likes": 173,
+      "lat": 45.50958,
+      "lon": -73.55069,
+      "dominant_category": "Missing path",
+      "rep_text": "Area needs a dedicated bike path to connect",
+      "rep_likes": 35
+    },
+    {
+      "markers": 21,
+      "total_likes": 144,
+      "lat": 45.50971,
+      "lon": -73.56672,
+      "dominant_category": "Needs improvement",
+      "rep_text": "Une des intersections les plus dangereuses pour les cyclistes e montréal (arret de bus dans la bande cyclable, denivele, aucune separation entre les vélos et le",
+      "rep_likes": 20
+    },
+    {
+      "markers": 26,
+      "total_likes": 142,
+      "lat": 45.54767,
+      "lon": -73.67255,
+      "dominant_category": "To be removed",
+      "rep_text": "Piste cyclable importante et structurant e ne pas elever",
+      "rep_likes": 12
+    },
+    {
+      "markers": 27,
+      "total_likes": 139,
+      "lat": 45.52298,
+      "lon": -73.60393,
+      "dominant_category": "Missing path",
+      "rep_text": "Piste cyclable manquante sur l'avenue du Parc. Incroyablement dangereux de rouler ici.",
+      "rep_likes": 30
+    },
+    {
+      "markers": 21,
+      "total_likes": 129,
+      "lat": 45.52121,
+      "lon": -73.60003,
+      "dominant_category": "Missing path",
+      "rep_text": "Une piste unidirectionnel est une necessite et est très importante pour la sécurité de tous",
+      "rep_likes": 21
+    },
+    {
+      "markers": 19,
+      "total_likes": 128,
+      "lat": 45.54515,
+      "lon": -73.67326,
+      "dominant_category": "Appreciated",
+      "rep_text": "Bravo pour cet aménagement. Adoucit la circulation pour les deux écoles primaires e proximite.",
+      "rep_likes": 24
+    },
+    {
+      "markers": 11,
+      "total_likes": 112,
+      "lat": 45.52895,
+      "lon": -73.57072,
+      "dominant_category": "Needs improvement",
+      "rep_text": "Tellement de vélos sur la piste sur Rachel, il faudrait 2 pistes unidirectionelles.",
+      "rep_likes": 31
+    },
+    {
+      "markers": 14,
+      "total_likes": 110,
+      "lat": 45.49918,
+      "lon": -73.57065,
+      "dominant_category": "Missing path",
+      "rep_text": "REV Peel e completer au moins jusqu'e Maisonneuve.",
+      "rep_likes": 24
+    },
+    {
+      "markers": 14,
+      "total_likes": 109,
+      "lat": 45.51837,
+      "lon": -73.59294,
+      "dominant_category": "Missing path",
+      "rep_text": "L'avenue du Parc est très dangereuse pour les cyclistes et les piétons, cela ressemble e un autoroute en pleine ville. Il faut un lien cyclable protege unidirec",
+      "rep_likes": 37
+    },
+    {
+      "markers": 21,
+      "total_likes": 107,
+      "lat": 45.55515,
+      "lon": -73.6682,
+      "dominant_category": "To be removed",
+      "rep_text": "Besoin de plus lien comme celui ci !",
+      "rep_likes": 13
+    },
+    {
+      "markers": 18,
+      "total_likes": 98,
+      "lat": 45.51228,
+      "lon": -73.55481,
+      "dominant_category": "Needs improvement",
+      "rep_text": "Puisque la piste est bidirectionnelle, des conflits entre les usagers. Devrait être remplacee par 2 unidirectionnelles, comme c'etait prevu sur Berri plus au no",
+      "rep_likes": 13
+    },
+    {
+      "markers": 18,
+      "total_likes": 92,
+      "lat": 45.57192,
+      "lon": -73.65755,
+      "dominant_category": "To be removed",
+      "rep_text": "Une superbe piste qui permet de traverser rapidement le quartier. Cela sera encore mieux quand elle sera completee",
+      "rep_likes": 24
+    },
+    {
+      "markers": 16,
+      "total_likes": 91,
+      "lat": 45.5075,
+      "lon": -73.56253,
+      "dominant_category": "Needs improvement",
+      "rep_text": "Les véhicules qui souhaitent tourner e droite sur rené-lévesque doivent traverser la bande cyclable. Cohabitation dangereuse.",
+      "rep_likes": 13
+    }
+  ],
+  "cluster_stats": {
+    "n_hotspot_cells": 176,
+    "markers_in_hotspots": 1580,
+    "cell_size_meters": 300,
+    "min_markers_per_cell": 5
+  },
+  "top_terms_overall": [
+    "lien",
+    "rev",
+    "parc",
+    "dangereux",
+    "velo",
+    "cyclistes",
+    "intersection",
+    "c'est",
+    "nord",
+    "dangereuse",
+    "manque",
+    "saint",
+    "sud",
+    "securitaire",
+    "velos",
+    "voitures",
+    "besoin",
+    "pietons",
+    "henri",
+    "tout"
+  ],
+  "top_terms_by_category": {
+    "Appreciated": [
+      "lien",
+      "apprecie",
+      "rev",
+      "pratique",
+      "securitaire",
+      "belle",
+      "bonne",
+      "permet",
+      "agreable",
+      "utile",
+      "appreciee",
+      "merci"
+    ],
+    "Needs improvement": [
+      "intersection",
+      "voitures",
+      "dangereuse",
+      "dangereux",
+      "bande",
+      "cyclistes",
+      "velo",
+      "velos",
+      "beaucoup",
+      "securiser",
+      "pietons",
+      "automobilistes"
+    ],
+    "Missing path": [
+      "rev",
+      "lien",
+      "parc",
+      "manque",
+      "saint",
+      "nord",
+      "dangereux",
+      "velo",
+      "sherbrooke",
+      "cyclistes",
+      "sud",
+      "besoin"
+    ],
+    "To be removed": [
+      "henri bourassa",
+      "parc",
+      "bourassa",
+      "henri",
+      "svp",
+      "inutile",
+      "traffic",
+      "arterielle",
+      "reseau arterielle",
+      "bourassa c'est",
+      "arrete tous",
+      "c'est traffic"
+    ]
+  },
+  "themes": [
+    {
+      "size": 2705,
+      "top_terms": [
+        "lien",
+        "parc",
+        "dangereux",
+        "velo",
+        "cyclistes",
+        "intersection",
+        "dangereuse",
+        "velos"
+      ],
+      "samples": [
+        "Dangereux entre la rue du Quai de l'horloge et Saint-Laurent. Nous sommes jetes directement vers les piétons et touristes.",
+        "Axe dangereux",
+        "L'avenue du Parc est très dangereuse pour les cyclistes et les piétons, cela ressemble e un autoroute en pleine ville. Il faut un lien cycla"
+      ]
+    },
+    {
+      "size": 265,
+      "top_terms": [
+        "rev",
+        "saint",
+        "jarry",
+        "rev jarry",
+        "rev sherbrooke",
+        "sherbrooke",
+        "urbain",
+        "rev laurent"
+      ],
+      "samples": [
+        "Depuis que le REV est present sur Saint-Denis, la vitalite commerciale explose. L'occupation des locaux est enfin e un niveau eleve, apres u",
+        "J'ai apprécié utiliser le REV Henri-Bourassa et j'ai bien hete qu'il soit complete!",
+        "REV Peel e completer au moins jusqu'e Maisonneuve."
+      ]
+    },
+    {
+      "size": 144,
+      "top_terms": [
+        "nord",
+        "sud",
+        "nord sud",
+        "lien",
+        "lien nord",
+        "manque",
+        "rev",
+        "l'ouest"
+      ],
+      "samples": [
+        "Lien cyclable sur Saint-Urbain qui ne retire aucune capacite routiere (en bord de rue e la place du stationnement), axe deje present mais sé",
+        "le REV St-Denis est une game-changer en Nord-Sud",
+        "Axe nord-sud très utile et apprécié"
+      ]
+    },
+    {
+      "size": 111,
+      "top_terms": [
+        "bike",
+        "path",
+        "bike path",
+        "lane",
+        "bike lane",
+        "street",
+        "needs",
+        "major"
+      ],
+      "samples": [
+        "Area needs a dedicated bike path to connect",
+        "Desperate need for a dedicated cycle path in this highly used corridor. There's so much space. Priority for pedestrians and cyclists alike.",
+        "Parc needs protected bike paths. We've seen too many deaths and injuries here. Children use this cultural artery. There's enough room for al"
+      ]
+    },
+    {
+      "size": 69,
+      "top_terms": [
+        "tout henri",
+        "traffic arrete",
+        "metres feux",
+        "inutile tout",
+        "feux rouges",
+        "c'est traffic",
+        "arrete tous",
+        "tous metres"
+      ],
+      "samples": [
+        "Inutile sur tout Henri Bourassa ! C'est dans le Traffic et on arrête e tous les 100 mètres pour des feux rouges.",
+        "Inutile sur tout Henri Bourassa ! C'est dans le Traffic et on arrête e tous les 100 mètres pour des feux rouges.",
+        "Inutile sur tout Henri Bourassa ! C'est dans le Traffic et on arrête e tous les 100 mètres pour des feux rouges."
+      ]
+    },
+    {
+      "size": 39,
+      "top_terms": [
+        "arterielle",
+        "reseau arterielle",
+        "reseau",
+        "nuis reseau",
+        "nuis",
+        "nuit reseau",
+        "nuit",
+        "local"
+      ],
+      "samples": [
+        "Nuis aux réseau artérielle",
+        "Nuis au réseau artérielle et detourner la circulation sur les rue local",
+        "Nuis au réseau artérielle et collectif gestion inutile"
+      ]
+    }
+  ]
+}
