@@ -37,7 +37,7 @@ catégories :
 
 ## Visualisation phare — carte de la catégorie dominante
 
-[![Carte de la catégorie dominante par secteur](doc/dominance-map-screenshot.png)](carte-dominante.html)
+[![Carte de la catégorie dominante par secteur](doc/dominance-map-screenshot.png)](https://rickynotaro.github.io/analyse-consultation-publique-place-du-velo-montreal-2026/carte-dominante.html)
 
 Chaque cellule (~300 m) prend la couleur de la catégorie qui y détient le plus de **poids-usager**
 (chaque personne pèse 1, réparti sur ses marqueurs), ce qui **dé-biaise l'analyse des usagers très
@@ -45,8 +45,8 @@ prolifiques**. Un curseur règle la **saturation des couleurs** (pour garder le 
 et un autre masque les secteurs peu actifs. **Cliquez un secteur** pour lire ses commentaires, du plus
 lourd au plus léger.
 
-➡️ Carte interactive plein écran : [`carte-dominante.html`](carte-dominante.html) · tableau de bord
-complet : [`index.html`](index.html).
+➡️ Carte interactive plein écran : [`carte-dominante.html`](https://rickynotaro.github.io/analyse-consultation-publique-place-du-velo-montreal-2026/carte-dominante.html) ·
+tableau de bord complet : [`index.html`](https://rickynotaro.github.io/analyse-consultation-publique-place-du-velo-montreal-2026/).
 
 ## Confidentialité et anonymisation
 
