@@ -13,10 +13,12 @@ two blended layers (toggle in the top-left control):
      broad base over the few power-users.
 
   2. "Dominant category grid (~300 m, user-weighted)"
-     ~300 m cells coloured by the category holding the most user-weight in that
-     cell; fill opacity scales with the cell's total user-weight. One glance =
-     what each area feels, de-biased for prolific users. A slider (bottom-right)
-     hides cells whose total user-weight is below a chosen threshold.
+     ~300 m cells coloured by the category holding the most engaged weight in
+     that cell (marker-placer weight + de-spammed liker weight, see
+     user_weighting.load_weighted); fill opacity scales with the cell's total
+     engaged weight. One glance = what each area feels, de-biased for both
+     prolific posters and like-spam accounts. A slider (bottom-right) hides
+     cells whose total engaged weight is below a chosen threshold.
 """
 import html
 import os
@@ -189,27 +191,32 @@ def _js_str(s):
 def dominant_grid_geojson(df):
     """Build a GeoJSON FeatureCollection of dominant-category cells.
 
-    Each feature carries its total user-weight (`weight`) so the slider can
+    A cell's weight blends two one-person-one-vote pools: `w` (from placing a
+    marker) and `liked_w` (from liking one), so a category's dominance in a
+    cell reflects both people who spoke up and people who endorsed a comment,
+    without a marker-spam or like-spam account distorting either pool.
+
+    Each feature carries its total engaged weight (`weight`) so the slider can
     show/hide it client-side. Returns (geojson, max_weight).
     """
     df = df.copy()
     df["ilat"] = np.floor(df["lat"] / LAT_CELL).astype(int)
     df["ilon"] = np.floor(df["lon"] / LON_CELL).astype(int)
+    df["engaged"] = df["w"] + df["liked_w"]
     grouped = df.groupby(["ilat", "ilon"])
-    max_w = float(grouped["w"].sum().max())
+    max_w = float(grouped["engaged"].sum().max())
     features = []
     for (ilat, ilon), g in grouped:
-        total = float(g["w"].sum())
-        cat_w = g.groupby("category_id")["w"].sum()
+        total = float(g["engaged"].sum())
+        cat_w = g.groupby("category_id")["engaged"].sum()
         dom = int(cat_w.idxmax())
         lat0, lon0 = ilat * LAT_CELL, ilon * LON_CELL
         lat1, lon1 = lat0 + LAT_CELL, lon0 + LON_CELL
         breakdown = "<br>".join(f"{CAT_LABEL_FR[c]} : {w:.2f}" for c, w in cat_w.items())
-        # Comments in this cell, ranked by user-weight boosted by community likes
-        # (so a heavily-liked comment from a casual user still surfaces near the
-        # top, not just the ones from users who placed few markers). Capped for
-        # size/readability.
-        g_sorted = g.assign(_rank=g["w"] * (1 + g["num_likes"])).sort_values("_rank", ascending=False)
+        # Comments in this cell, ranked by user-weight boosted by (de-spammed)
+        # liked-weight, so a heavily-liked comment from a casual user still
+        # surfaces near the top. Capped for size/readability.
+        g_sorted = g.assign(_rank=g["w"] * (1 + g["liked_w"])).sort_values("_rank", ascending=False)
         comments = [
             [html.escape("" if pd.isna(r.marker_text) else str(r.marker_text)),
              round(float(r.w), 4), int(r.num_likes), int(r.category_id)]
@@ -220,10 +227,10 @@ def dominant_grid_geojson(df):
             "properties": {
                 "weight": round(total, 4),
                 "color": CAT_COLOR[dom],
-                # Colour saturates at GRID_SATURATION_WEIGHT total user-weight per cell.
+                # Colour saturates at GRID_SATURATION_WEIGHT total engaged weight per cell.
                 "fillOpacity": round(0.2 + 0.65 * min(total / GRID_SATURATION_WEIGHT, 1.0), 3),
                 "popup": (f"<b>{CAT_LABEL_FR[dom]}</b> (dominante)<br>"
-                          f"poids-usager total {total:.2f}<br>{breakdown}"),
+                          f"poids total (usagers + j'aime) {total:.2f}<br>{breakdown}"),
                 "comments": comments,
                 "n_total": int(len(g_sorted)),
                 "dom_color": CAT_COLOR[dom],
@@ -313,17 +320,19 @@ def legend_fr():
             "background:white;padding:8px 12px;border-radius:6px;font-family:sans-serif;"
             "font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,.3)'>"
             "<b>Catégorie dominante</b>" + items +
-            "<hr style='margin:6px 0'><i>Opacité = poids-usager du secteur<br>"
-            "(chaque personne pèse 1, réparti sur ses marqueurs)</i></div>")
+            "<hr style='margin:6px 0'><i>Opacité = poids total du secteur "
+            "(marqueurs + j'aime)<br>(chaque personne pèse 1, réparti sur ses "
+            "marqueurs et sur ses j'aime)</i></div>")
 
 
 def grid_controls_fr(grid_name, max_w):
     """French control panel (bottom-right): colour-saturation + min-weight sliders.
 
-    Saturation sets the total user-weight at which a cell reaches full colour
-    (higher = more nuance / more basemap context visible); the min-weight slider
-    hides sparse cells. Both recompute cell styling client-side, so all cells are
-    captured once at load to keep the two sliders consistent.
+    Saturation sets the total engaged weight (markers + likes) at which a cell
+    reaches full colour (higher = more nuance / more basemap context visible);
+    the min-weight slider hides sparse cells. Both recompute cell styling
+    client-side, so all cells are captured once at load to keep the two
+    sliders consistent.
     """
     min_max = max(1.0, round(max_w, 2))
     sat_max = max(10.0, round(max_w))
@@ -341,7 +350,7 @@ def grid_controls_fr(grid_name, max_w):
     <span id="gridMinVal">{MIN_CELL_WEIGHT:g}</span></div>
   <input id="gridMin" type="range" min="0" max="{min_max}" step="0.5"
          value="{MIN_CELL_WEIGHT}" style="width:100%">
-  <div style="color:#888;font-size:11px">poids-usager (max {min_max:g})</div>
+  <div style="color:#888;font-size:11px">poids total, usagers + j'aime (max {min_max:g})</div>
 </div>
 <script>
 window.addEventListener('load', function () {{
@@ -373,7 +382,7 @@ def grid_title_fr():
     return ("<h3 style='position:fixed;top:8px;left:60px;z-index:9999;"
             "background:white;padding:6px 10px;border-radius:6px;"
             "font-family:sans-serif;font-size:14px;margin:0'>Cat&eacute;gorie dominante "
-            "par secteur (~300&nbsp;m, pond&eacute;r&eacute; par usager)</h3>")
+            "par secteur (~300&nbsp;m, pond&eacute;r&eacute; par usager et j'aime)</h3>")
 
 
 def grid_comments_js(map_name, grid_name):
