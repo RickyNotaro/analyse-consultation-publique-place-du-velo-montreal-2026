@@ -35,6 +35,19 @@ catégories :
 | 🟣 Manquante | magenta |
 | 🔴 À retirer | rouge |
 
+## Visualisation phare — carte de la catégorie dominante
+
+[![Carte de la catégorie dominante par secteur](doc/dominance-map-screenshot.png)](carte-dominante.html)
+
+Chaque cellule (~300 m) prend la couleur de la catégorie qui y détient le plus de **poids-usager**
+(chaque personne pèse 1, réparti sur ses marqueurs), ce qui **dé-biaise l'analyse des usagers très
+prolifiques**. Un curseur règle la **saturation des couleurs** (pour garder le contexte cartographique)
+et un autre masque les secteurs peu actifs. **Cliquez un secteur** pour lire ses commentaires, du plus
+lourd au plus léger.
+
+➡️ Carte interactive plein écran : [`carte-dominante.html`](carte-dominante.html) · tableau de bord
+complet : [`index.html`](index.html).
+
 ## Confidentialité et anonymisation
 
 - Le fichier source brut (`raw/`, p. ex. `raw/forms-2026-07-10.json`) contient des renseignements
