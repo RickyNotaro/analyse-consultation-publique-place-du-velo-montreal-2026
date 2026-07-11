@@ -213,10 +213,9 @@ def dominant_grid_geojson(df):
         lat0, lon0 = ilat * LAT_CELL, ilon * LON_CELL
         lat1, lon1 = lat0 + LAT_CELL, lon0 + LON_CELL
         breakdown = "<br>".join(f"{CAT_LABEL_FR[c]} : {w:.2f}" for c, w in cat_w.items())
-        # Comments in this cell, ranked by user-weight boosted by (de-spammed)
-        # liked-weight, so a heavily-liked comment from a casual user still
-        # surfaces near the top. Capped for size/readability.
-        g_sorted = g.assign(_rank=g["w"] * (1 + g["liked_w"])).sort_values("_rank", ascending=False)
+        # Comments in this cell, ranked by (de-spammed) liked-weight first, then
+        # by user-weight as a tiebreak. Capped for size/readability.
+        g_sorted = g.sort_values(["liked_w", "w"], ascending=[False, False])
         comments = [
             [html.escape("" if pd.isna(r.marker_text) else str(r.marker_text)),
              round(float(r.w), 4), int(r.num_likes), int(r.category_id)]
@@ -387,8 +386,8 @@ def grid_title_fr():
 
 def grid_comments_js(map_name, grid_name):
     """Click a grid cell -> one scrollable popup listing its comments, ranked by
-    user-weight boosted by likes. Each feature carries its (capped) comments in
-    properties."""
+    (de-spammed) liked-weight first, then user-weight. Each feature carries its
+    (capped) comments in properties."""
     colors = ",".join(f"{c}:'{CAT_COLOR[c]}'" for c in [1, 2, 3, 4])
     return folium.Element(f"""
 <script>
@@ -443,9 +442,9 @@ def build_grid_only_map(df):
     """The dominant-category grid as its own standalone French page (carte-dominante.html).
 
     Only the grid (no per-marker layer), so it stays light enough to also embed in
-    index.html. Click a cell to list its comments (ranked by user-weight boosted
-    by likes); a back-link to the dashboard appears only when the page is opened
-    on its own.
+    index.html. Click a cell to list its comments (ranked by liked-weight, then
+    user-weight); a back-link to the dashboard appears only when the page is
+    opened on its own.
     """
     geojson, max_w = dominant_grid_geojson(df)
     m = folium.Map(location=MONTREAL, zoom_start=11, tiles="cartodbpositron")
