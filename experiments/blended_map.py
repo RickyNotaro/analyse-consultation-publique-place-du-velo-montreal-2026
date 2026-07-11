@@ -218,8 +218,7 @@ def dominant_grid_geojson(df):
         g_sorted = g.sort_values(["liked_w", "w"], ascending=[False, False])
         comments = [
             [html.escape("" if pd.isna(r.marker_text) else str(r.marker_text)),
-             round(float(r.w), 4), int(r.num_likes), int(r.category_id),
-             round(float(r.liked_w), 4)]
+             int(r.num_likes), int(r.category_id)]
             for r in g_sorted.head(GRID_COMMENT_CAP).itertuples()
         ]
         features.append({
@@ -386,9 +385,10 @@ def grid_title_fr():
 
 
 def grid_comments_js(map_name, grid_name):
-    """Click a grid cell -> one scrollable popup listing its comments, ranked by
-    (de-spammed) liked-weight first, then user-weight. Each feature carries its
-    (capped) comments in properties."""
+    """Click a grid cell -> one scrollable popup listing its comments (ranked by
+    (de-spammed) liked-weight first, then user-weight, though no weight figures
+    are shown per comment). Each feature carries its (capped) comments in
+    properties."""
     colors = ",".join(f"{c}:'{CAT_COLOR[c]}'" for c in [1, 2, 3, 4])
     return folium.Element(f"""
 <script>
@@ -407,14 +407,12 @@ window.addEventListener('load', function () {{
     var body = '';
     cs.forEach(function (a) {{
       var txt = (a[0] && a[0].length) ? a[0] : '<i>(sans texte)</i>';
-      var jaime = (a[2] === 1) ? '1 j’aime' : (a[2] || 0) + ' j’aime';
-      var col = CATCOLOR[a[3]] || '#888';
+      var jaime = (a[1] === 1) ? '1 j’aime' : (a[1] || 0) + ' j’aime';
+      var col = CATCOLOR[a[2]] || '#888';
       body += '<div style="border-top:1px solid #eee;padding:5px 0;font:12px sans-serif">' +
               '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;' +
               'background:' + col + ';margin-right:5px;vertical-align:middle"></span>' + txt +
-              '<div style="color:#888;font-size:11px;margin-top:2px">poids ' +
-              a[1].toFixed(3) + ' · ' + jaime + ' (poids j’aime ' + a[4].toFixed(3) +
-              ')</div></div>';
+              '<div style="color:#888;font-size:11px;margin-top:2px">' + jaime + '</div></div>';
     }});
     if (p.n_total > cs.length) {{
       body += '<div style="color:#888;font:italic 11px sans-serif;padding-top:6px">… et ' +
