@@ -218,7 +218,8 @@ def dominant_grid_geojson(df):
         g_sorted = g.sort_values(["liked_w", "w"], ascending=[False, False])
         comments = [
             [html.escape("" if pd.isna(r.marker_text) else str(r.marker_text)),
-             round(float(r.w), 4), int(r.num_likes), int(r.category_id)]
+             round(float(r.w), 4), int(r.num_likes), int(r.category_id),
+             round(float(r.liked_w), 4)]
             for r in g_sorted.head(GRID_COMMENT_CAP).itertuples()
         ]
         features.append({
@@ -412,7 +413,8 @@ window.addEventListener('load', function () {{
               '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;' +
               'background:' + col + ';margin-right:5px;vertical-align:middle"></span>' + txt +
               '<div style="color:#888;font-size:11px;margin-top:2px">poids ' +
-              a[1].toFixed(3) + ' · ' + jaime + '</div></div>';
+              a[1].toFixed(3) + ' · ' + jaime + ' (poids j’aime ' + a[4].toFixed(3) +
+              ')</div></div>';
     }});
     if (p.n_total > cs.length) {{
       body += '<div style="color:#888;font:italic 11px sans-serif;padding-top:6px">… et ' +
