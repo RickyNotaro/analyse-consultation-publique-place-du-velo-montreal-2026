@@ -172,10 +172,10 @@ TEMPLATE = r"""<!DOCTYPE html>
       <div class="collapse navbar-collapse" id="sidebar-menu">
         <ul class="navbar-nav pt-lg-2">
           <li class="nav-item"><a class="nav-link" href="#resume"><i class="ti ti-home me-2"></i>Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="#carte"><i class="ti ti-map-2 me-2"></i>Carte & points chauds</a></li>
+          <li class="nav-item"><a class="nav-link" href="#positions"><i class="ti ti-scale me-2"></i>Pour vs contre</a></li>
           <li class="nav-item"><a class="nav-link" href="#categories"><i class="ti ti-chart-donut me-2"></i>Catégories</a></li>
           <li class="nav-item"><a class="nav-link" href="#engagement"><i class="ti ti-heart me-2"></i>Engagement</a></li>
-          <li class="nav-item"><a class="nav-link" href="#positions"><i class="ti ti-scale me-2"></i>Pour vs contre</a></li>
-          <li class="nav-item"><a class="nav-link" href="#carte"><i class="ti ti-map-2 me-2"></i>Carte & points chauds</a></li>
           <li class="nav-item"><a class="nav-link" href="#corridors"><i class="ti ti-road me-2"></i>Corridors</a></li>
           <li class="nav-item"><a class="nav-link" href="#concentration"><i class="ti ti-chart-line me-2"></i>Concentration</a></li>
           <li class="nav-item"><a class="nav-link" href="#reseau"><i class="ti ti-affiliate me-2"></i>Réseau</a></li>
@@ -190,6 +190,26 @@ TEMPLATE = r"""<!DOCTYPE html>
   <div class="page-wrapper">
     <div class="page-body">
       <div class="container-xl">
+
+      <!-- ============ INTRODUCTION ============ -->
+      <div class="card mb-3">
+        <div class="card-status-top bg-primary"></div>
+        <div class="card-body">
+          <h1 class="mb-1"><i class="ti ti-bike me-2 text-primary"></i>La place du vélo à Montréal — analyse indépendante</h1>
+          <p class="text-secondary mb-2" style="max-width:920px">Analyse indépendante des marqueurs déposés sur la carte de la
+            consultation publique <b>« Partagez votre expérience : la place du vélo à Montréal »</b> de la Ville de Montréal
+            (question cartographique 11865). Les participant·e·s ont indiqué où les infrastructures cyclables sont
+            <span class="text-green">appréciées</span>, <span class="text-yellow">à améliorer</span>,
+            <span class="text-purple">manquantes</span> ou <span class="text-red">à retirer</span>. Cette page rassemble
+            les grands constats : répartition, engagement, positions pour/contre, points chauds géographiques et thèmes.</p>
+          <div>
+            <span class="badge bg-primary-lt me-1 mb-1"><i class="ti ti-refresh me-1"></i>Données à jour au __REFRESH_DATE__</span>
+            <span class="badge bg-secondary-lt me-1 mb-1">__NMARKERS__ marqueurs</span>
+            <span class="badge bg-secondary-lt me-1 mb-1">consultation du 25 juin au 25 juillet 2026 — extrait partiel</span>
+            <span class="badge bg-secondary-lt mb-1">non affiliée à la Ville de Montréal</span>
+          </div>
+        </div>
+      </div>
 
       <!-- ============ RÉSUMÉ ============ -->
       <section id="resume">
@@ -223,43 +243,49 @@ TEMPLATE = r"""<!DOCTYPE html>
 
         <div class="card mt-1"><div class="card-body">
           <p class="lead-quote mb-0">En comptant <b>une personne, un vote</b>, la part des demandes de
-          retrait tombe de <b>11,8 % à 7,6 %</b>. Même sur Henri-Bourassa — le corridor le plus visé par
-          le retrait (108 marqueurs « À retirer ») — seulement <b>19 personnes sont contre</b> contre
-          <b>100 pour</b>. L'opposition est réelle mais étroite et concentrée.</p>
+          retrait tombe de <b>21,5 % à 7,4 %</b> — car <b>72 % des marqueurs « À retirer » proviennent d'un
+          seul usager</b>. Même sur Henri-Bourassa — le corridor le plus visé par le retrait (133 marqueurs
+          « À retirer ») — seulement <b>43 personnes sont contre</b> contre <b>232 pour</b>. L'opposition
+          est réelle mais étroite et concentrée.</p>
         </div></div>
       </section>
 
-      <!-- ============ CATÉGORIES ============ -->
-      <section id="categories" class="mt-4">
-        <h2 class="mb-3"><i class="ti ti-chart-donut me-2 text-purple"></i>Répartition par catégorie</h2>
-        <div class="row row-cards">
-          <div class="col-lg-5"><div class="card"><div class="card-body">
-            <div class="chart-wrap" style="height:320px"><canvas id="catDoughnut"></canvas></div></div></div></div>
-          <div class="col-lg-7"><div class="card"><div class="card-body">
-            <p class="text-secondary">Près de <b>7 marqueurs sur 10 (68,6 %)</b> signalent une lacune ou un
-            problème (voie manquante + à améliorer). À peine ~1 sur 5 célèbre l'existant, et les demandes
-            de retrait forment le plus petit groupe.</p>
-            <div class="chart-wrap" style="height:230px"><canvas id="catBar"></canvas></div></div></div></div>
-        </div>
-      </section>
-
-      <!-- ============ ENGAGEMENT ============ -->
-      <section id="engagement" class="mt-4">
-        <h2 class="mb-3"><i class="ti ti-heart me-2 text-red"></i>Engagement & priorités de la communauté</h2>
-        <div class="row row-cards">
-          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">J'aime moyens par catégorie</h3></div>
-            <div class="card-body"><p class="text-secondary">Les marqueurs « À retirer » reçoivent de loin le
-              moins de j'aime — le public ne se rallie pas derrière eux.</p>
-              <div class="chart-wrap" style="height:280px"><canvas id="avgLikes"></canvas></div></div></div></div>
-          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">Total de j'aime par catégorie</h3></div>
-            <div class="card-body"><p class="text-secondary"><b id="tl"></b> j'aime au total · moyenne 3,84 ·
-              78 % des marqueurs ont au moins un j'aime. La « voie manquante » récolte le plus de j'aime.</p>
-              <div class="chart-wrap" style="height:280px"><canvas id="totLikes"></canvas></div></div></div></div>
-        </div>
-        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Marqueurs les plus aimés (priorités citoyennes)</h3></div>
+      <!-- ============ CARTE ============ -->
+      <section id="carte" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-map-2 me-2 text-purple"></i>Carte interactive & points chauds</h2>
+        <div class="card"><div class="card-header"><h3 class="card-title">Catégorie dominante par secteur (pondéré par usager)</h3></div>
+          <div class="card-body">
+            <p class="text-secondary">Ce que <b>chaque secteur</b> réclame, une fois <b>dé-biaisé des usagers prolifiques</b> :
+              chaque cellule (~300 m) prend la couleur de la catégorie qui y détient le plus de <b>poids-usager</b> (chaque
+              personne pèse 1, réparti sur ses marqueurs). L'opacité croît avec la participation locale. <b>Cliquez un
+              secteur</b> pour lire ses commentaires (du plus lourd au plus léger). Réglez, en bas à droite, la
+              <b>saturation des couleurs</b> (plus haut = plus de nuances et de contexte) et le seuil qui masque les
+              secteurs peu actifs.</p>
+            <iframe src="carte-dominante.html" title="Catégorie dominante par secteur"
+              style="width:100%;height:560px;border:0;border-radius:8px" loading="lazy"></iframe>
+            <div class="btn-list mt-2">
+              <a class="btn btn-primary" href="carte-dominante.html" target="_blank">
+                <i class="ti ti-arrows-maximize me-1"></i>Ouvrir en pleine page</a>
+              <a class="btn btn-outline-primary" href="experiments/output/blended_map.html" target="_blank">
+                <i class="ti ti-stack-2 me-1"></i>Carte détaillée — toutes les couches (marqueurs pondérés, regroupements)</a></div>
+          </div></div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Principaux points chauds (cellules de ~300 m)</h3></div>
+          <div class="card-body"><p class="text-secondary mb-0">652 cellules contiennent ≥5 marqueurs
+            (8 611 marqueurs). Deux pôles dominent : le <b>Vieux-Port / centre-ville est</b> et
+            <b>l'avenue du Parc</b>, tous deux signalés <i>manquants</i> et <i>dangereux</i>. Dans les 69
+            cellules à dominante de retrait, les marqueurs « Apprécié » récoltent <b>1 384 j'aime</b> contre
+            <b>233</b> pour le retrait (5,9×).</p></div>
           <div class="table-responsive"><table class="table table-vcenter card-table">
-            <thead><tr><th class="text-center">J'aime</th><th>Catégorie</th><th>Commentaire</th></tr></thead>
-            <tbody>__TBL_TOPMARKERS__</tbody></table></div></div>
+            <thead><tr><th class="text-center">Marq.</th><th class="text-center">J'aime</th><th>Catégorie dominante</th>
+              <th>Localisation</th><th>Commentaire représentatif</th></tr></thead>
+            <tbody>__TBL_HOTSPOTS__</tbody></table></div></div>
+        <div class="card mt-1"><div class="card-body">
+          <div class="text-secondary mb-2">Cartes complémentaires (vues techniques) :</div>
+          <div class="btn-list">
+            <a class="btn btn-outline-primary" href="experiments/output/net_sentiment_map.html" target="_blank"><i class="ti ti-map me-1"></i>Sentiment net (apprécié vs retrait)</a>
+            <a class="btn btn-outline-primary" href="experiments/output/blended_map.html" target="_blank"><i class="ti ti-map me-1"></i>Marqueurs pondérés / grille dominante</a>
+            <a class="btn btn-outline-primary" href="experiments/output/weighted_map.html" target="_blank"><i class="ti ti-map me-1"></i>Densité brute vs pondérée</a>
+          </div></div></div>
       </section>
 
       <!-- ============ POUR VS CONTRE ============ -->
@@ -286,40 +312,42 @@ TEMPLATE = r"""<!DOCTYPE html>
               <span class="text-red"><span id="cRem"></span> des marqueurs de retrait</span></div>
             <div class="chart-wrap" style="height:280px"><canvas id="conc"></canvas></div></div></div>
         <div class="card mt-1"><div class="card-header"><h3 class="card-title">Qui demande le retrait ? (anonymisé)</h3></div>
-          <div class="card-body"><p class="text-secondary">Les demandes de retrait sont très concentrées : un
-            seul usager en a placé 116 (29,6 % de la catégorie), et le top 3 représente <b id="t3"></b>.</p>
+          <div class="card-body"><p class="text-secondary">Les demandes de retrait sont extrêmement concentrées :
+            un seul usager en a placé 1 784 (72,3 % de la catégorie), et le top 3 représente <b id="t3"></b>.</p>
             <div class="chart-wrap" style="height:340px"><canvas id="removers"></canvas></div></div></div>
       </section>
 
-      <!-- ============ CARTE ============ -->
-      <section id="carte" class="mt-4">
-        <h2 class="mb-3"><i class="ti ti-map-2 me-2 text-purple"></i>Carte interactive & points chauds</h2>
-        <div class="card"><div class="card-header"><h3 class="card-title">Carte des 3 333 marqueurs</h3></div>
-          <div class="card-body text-center">
-            <p class="text-secondary">Aperçu géographique par catégorie. La <b>carte interactive</b> complète
-              (groupes de marqueurs, infobulles, couches activables, chaleur des j'aime) s'ouvre dans un
-              nouvel onglet — elle est volontairement séparée car elle charge 3 333 marqueurs.</p>
-            <img src="output/charts/spatial_scatter.png" class="img-fluid rounded border mb-3"
-              style="max-width:580px" alt="Emplacement des marqueurs par catégorie">
-            <div><a class="btn btn-primary" href="output/map.html" target="_blank"><i class="ti ti-map-2 me-1"></i>Ouvrir la carte interactive</a></div>
-          </div></div>
-        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Principaux points chauds (cellules de ~300 m)</h3></div>
-          <div class="card-body"><p class="text-secondary mb-0">176 cellules contiennent ≥5 marqueurs
-            (1 580 marqueurs). Deux pôles dominent : le <b>Vieux-Port / centre-ville est</b> et
-            <b>l'avenue du Parc</b>, tous deux signalés <i>manquants</i> et <i>dangereux</i>. Dans les 7
-            cellules à dominante de retrait, les marqueurs « Apprécié » récoltent <b>395 j'aime</b> contre
-            <b>183</b> pour le retrait (2,2×).</p></div>
+      <!-- ============ CATÉGORIES ============ -->
+      <section id="categories" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-chart-donut me-2 text-purple"></i>Répartition par catégorie</h2>
+        <div class="row row-cards">
+          <div class="col-lg-5"><div class="card"><div class="card-body">
+            <div class="chart-wrap" style="height:320px"><canvas id="catDoughnut"></canvas></div></div></div></div>
+          <div class="col-lg-7"><div class="card"><div class="card-body">
+            <p class="text-secondary">Près de <b>6 marqueurs sur 10 (59,6 %)</b> signalent une lacune ou un
+            problème (voie manquante + à améliorer). À peine ~1 sur 5 célèbre l'existant. Le retrait paraît
+            important (21,5 %), mais <b>72 % de ces marqueurs proviennent d'un seul usager</b> (voir plus bas).</p>
+            <div class="chart-wrap" style="height:230px"><canvas id="catBar"></canvas></div></div></div></div>
+        </div>
+      </section>
+
+      <!-- ============ ENGAGEMENT ============ -->
+      <section id="engagement" class="mt-4">
+        <h2 class="mb-3"><i class="ti ti-heart me-2 text-red"></i>Engagement & priorités de la communauté</h2>
+        <div class="row row-cards">
+          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">J'aime moyens par catégorie</h3></div>
+            <div class="card-body"><p class="text-secondary">Les marqueurs « À retirer » reçoivent de loin le
+              moins de j'aime — le public ne se rallie pas derrière eux.</p>
+              <div class="chart-wrap" style="height:280px"><canvas id="avgLikes"></canvas></div></div></div></div>
+          <div class="col-lg-6"><div class="card"><div class="card-header"><h3 class="card-title">Total de j'aime par catégorie</h3></div>
+            <div class="card-body"><p class="text-secondary"><b id="tl"></b> j'aime au total · moyenne 3,74 ·
+              64 % des marqueurs ont au moins un j'aime. La « voie manquante » récolte le plus de j'aime.</p>
+              <div class="chart-wrap" style="height:280px"><canvas id="totLikes"></canvas></div></div></div></div>
+        </div>
+        <div class="card mt-1"><div class="card-header"><h3 class="card-title">Marqueurs les plus aimés (priorités citoyennes)</h3></div>
           <div class="table-responsive"><table class="table table-vcenter card-table">
-            <thead><tr><th class="text-center">Marq.</th><th class="text-center">J'aime</th><th>Catégorie dominante</th>
-              <th>Localisation</th><th>Commentaire représentatif</th></tr></thead>
-            <tbody>__TBL_HOTSPOTS__</tbody></table></div></div>
-        <div class="card mt-1"><div class="card-body">
-          <div class="text-secondary mb-2">Cartes complémentaires (vues techniques) :</div>
-          <div class="btn-list">
-            <a class="btn btn-outline-primary" href="experiments/output/net_sentiment_map.html" target="_blank"><i class="ti ti-map me-1"></i>Sentiment net (apprécié vs retrait)</a>
-            <a class="btn btn-outline-primary" href="experiments/output/blended_map.html" target="_blank"><i class="ti ti-map me-1"></i>Marqueurs pondérés / grille dominante</a>
-            <a class="btn btn-outline-primary" href="experiments/output/weighted_map.html" target="_blank"><i class="ti ti-map me-1"></i>Densité brute vs pondérée</a>
-          </div></div></div>
+            <thead><tr><th class="text-center">J'aime</th><th>Catégorie</th><th>Commentaire</th></tr></thead>
+            <tbody>__TBL_TOPMARKERS__</tbody></table></div></div>
       </section>
 
       <!-- ============ CORRIDORS ============ -->
@@ -343,9 +371,9 @@ TEMPLATE = r"""<!DOCTYPE html>
       <section id="concentration" class="mt-4">
         <h2 class="mb-3"><i class="ti ti-chart-line me-2 text-pink"></i>Concentration de la participation</h2>
         <div class="card"><div class="card-body">
-          <p class="text-secondary">La participation est très inégale : Gini de <b>0,62</b> (marqueurs créés),
-            <b>0,67</b> (j'aime donnés) et <b>0,71</b> (j'aime reçus). Le 10 % d'usagers les plus actifs
-            représente ~51–60 % de toute l'activité — ce qui motive la pondération « une personne, un vote ».</p>
+          <p class="text-secondary">La participation est très inégale : Gini de <b>0,68</b> (marqueurs créés),
+            <b>0,72</b> (j'aime donnés) et <b>0,73</b> (j'aime reçus). Le 10 % d'usagers les plus actifs
+            représente ~59–62 % de toute l'activité — ce qui motive la pondération « une personne, un vote ».</p>
           <img src="experiments/output/concentration_lorenz.png" class="img-fluid rounded border" style="max-width:680px"
             alt="Courbes de Lorenz de la concentration de la participation">
         </div></div>
@@ -357,7 +385,7 @@ TEMPLATE = r"""<!DOCTYPE html>
         <div class="card"><div class="card-body">
           <p class="text-secondary">Réseau de co-appréciation des 140 usagers les plus actifs (deux usagers
             sont reliés s'ils ont aimé les mêmes marqueurs). On distingue une grande masse pro-infrastructure
-            (3 communautés, 0 % de j'aime de retrait) et <b>un petit groupe détaché de 8 usagers à 95 % de
+            (deux communautés, 0 % de j'aime de retrait) et <b>un petit groupe détaché de 3 usagers à 99 % de
             j'aime de retrait</b> — confirmation visuelle d'une opposition concentrée et distincte.</p>
           <img src="experiments/output/engagement_network.png" class="img-fluid rounded border"
             alt="Réseau de co-appréciation, deux camps">
@@ -412,8 +440,8 @@ TEMPLATE = r"""<!DOCTYPE html>
             <li><b>Réserve résiduelle :</b> le texte libre des commentaires, les coordonnées exactes et la
               carte interactive (qui affiche chaque commentaire) sont inclus tels quels et pourraient, à la
               marge, permettre une réidentification.</li>
-            <li><b>Accents :</b> les données source ont une corruption d'accents irréversible (78 % des
-              marqueurs); une réparation cosmétique au mieux est appliquée, sans effet sur les comptes.</li>
+            <li><b>Source des données :</b> extrait <code>forms-*.json</code> (UTF-8, accents intacts) au
+              __REFRESH_DATE__; l'ancien extrait UTF-16 avait des accents corrompus, désormais sans objet.</li>
             <li><b>Pondération :</b> « une personne, un vote » = chaque marqueur pondéré par 1 / le nombre
               total de marqueurs de l'usager. Thèmes : TF-IDF + KMeans. Points chauds : quadrillage de ~300 m.</li>
           </ul>
@@ -471,7 +499,7 @@ new Chart($('totLikes'),{type:'bar',
 
 // positions doughnut markers/people
 const VIEWS={markers:{labels:['Pro-infrastructure','Veulent le retrait'],data:[DATA.pro_pct,DATA.anti_pct],
-    colors:['#2ca02c','#d62728'],take:'Près de 9 marqueurs sur 10 appuient plus ou de meilleures infrastructures cyclables.',btn:'Par personnes'},
+    colors:['#2ca02c','#d62728'],take:'Près de 8 marqueurs sur 10 appuient plus ou de meilleures infrastructures cyclables.',btn:'Par personnes'},
   people:{labels:['Pro seulement','Mixte','Retrait seulement'],data:[DATA.ppl_pro_pct,DATA.ppl_mix_pct,DATA.ppl_rem_pct],
     colors:['#2ca02c','#e6c700','#d62728'],
     take:'Par personne, c\'est encore plus net : '+DATA.ppl_pro_pct+' % purement pro, seulement '+DATA.ppl_rem_pct+' % uniquement retrait, '+DATA.ppl_mix_pct+' % mixtes.',btn:'Par marqueurs'}};
@@ -554,10 +582,33 @@ new Chart($('contributors'),{type:'bar',
 """
 
 
+_MOIS_FR = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
+            "août", "septembre", "octobre", "novembre", "décembre"]
+
+
+def refresh_date_fr():
+    """French refresh date parsed from the newest raw/forms-YYYY-MM-DD.json name.
+
+    Baked into index.html at build time (raw/ is present when the pipeline runs);
+    falls back to the latest known extract if no source file is on disk.
+    """
+    import glob
+    import re
+    files = sorted(glob.glob(os.path.join(ROOT, "raw", "forms-*.json")))
+    m = re.search(r"(\d{4})-(\d{2})-(\d{2})", os.path.basename(files[-1])) if files else None
+    if not m:
+        return "10 juillet 2026"
+    y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return f"{d} {_MOIS_FR[mo - 1]} {y}"
+
+
 def main():
     data, fnd = build_data()
     corridor_table, _ = corridors_data()
+    n_fr = f"{data['total_markers']:,}".replace(",", " ")  # québécois thousands sep = space
     html_out = (TEMPLATE
+                .replace("__NMARKERS__", n_fr)
+                .replace("__REFRESH_DATE__", refresh_date_fr())
                 .replace("__DATA__", json.dumps(data))
                 .replace("__TBL_TOPMARKERS__", tbl_top_markers(fnd))
                 .replace("__TBL_HOTSPOTS__", tbl_hotspots(fnd))

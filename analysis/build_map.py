@@ -1,5 +1,5 @@
 """
-Step 3 - Interactive HTML map of all 3,333 markers.
+Step 3 - Interactive HTML map of all markers.
 
 Reads output/markers.csv and writes output/map.html:
   - one toggleable, clustered layer per category (colours match the survey)
@@ -65,10 +65,11 @@ def main():
 
     folium.LayerControl(collapsed=False).add_to(m)
 
+    n_fr = f"{len(df):,}".replace(",", " ")  # québécois thousands sep = space
     title = ("<h3 style='position:fixed;top:8px;left:60px;z-index:9999;"
              "background:white;padding:6px 10px;border-radius:6px;"
-             "font-family:sans-serif'>Consultation sur le plan v&eacute;lo &mdash; "
-             "3 333 marqueurs de carte</h3>")
+             f"font-family:sans-serif'>Consultation sur le plan v&eacute;lo &mdash; "
+             f"{n_fr} marqueurs de carte</h3>")
     m.get_root().html.add_child(folium.Element(title))
 
     out = os.path.join(OUT, "map.html")

@@ -11,22 +11,19 @@ files are safe to publish. (The raw survey export does carry {first_name,
 last_name,id} objects, but we deliberately do not join them in.)
 """
 import csv
-import json
 import os
 from collections import Counter
 
+from dataload import load_markers
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-RAW = os.path.join(ROOT, "raw", "pretty.json")
 OUT = os.path.join(ROOT, "output")
-QUESTION_ID = 11865
 CAT_LABEL = {1: "Appreciated", 2: "Needs improvement", 3: "Missing path", 4: "To be removed"}
 
 
 def main():
-    with open(RAW, encoding="utf-16") as f:
-        doc = json.load(f)
-    markers = next(q for q in doc["data"] if q["id"] == QUESTION_ID)["mapMarkers"]
+    markers = load_markers()
 
     # Per-category counters.
     creators = {c: Counter() for c in CAT_LABEL}

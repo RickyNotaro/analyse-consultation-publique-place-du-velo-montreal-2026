@@ -20,12 +20,12 @@ participant·e·s sur :
 
 **Format :** consultation publique en ligne
 **Période de consultation :** 25 juin 2026 – 25 juillet 2026
-**Extrait analysé :** données au **26 juin 2026** (extrait partiel et précoce — la consultation était
-toujours ouverte au moment de la collecte).
+**Extrait analysé :** données au **10 juillet 2026** (extrait partiel — la consultation était toujours
+ouverte au moment de la collecte).
 
 Cette analyse porte uniquement sur la **question cartographique (id 11865)** du sondage : « Sur la
 carte, indiquez les endroits, partout dans l'agglomération, où les infrastructures cyclables sont
-appréciées, à améliorer, manquantes ou à retirer. » Soit **3 333 marqueurs**, répartis en quatre
+appréciées, à améliorer, manquantes ou à retirer. » Soit **11 465 marqueurs**, répartis en quatre
 catégories :
 
 | Catégorie | Couleur |
@@ -37,8 +37,9 @@ catégories :
 
 ## Confidentialité et anonymisation
 
-- Le fichier source `raw/pretty.json` contient des renseignements personnels (noms, courriels et
-  réponses complètes au sondage). Il **n'est pas versionné** (voir [`.gitignore`](.gitignore)).
+- Le fichier source brut (`raw/`, p. ex. `raw/forms-2026-07-10.json`) contient des renseignements
+  personnels (noms, courriels et réponses complètes au sondage). Il **n'est pas versionné** (voir
+  [`.gitignore`](.gitignore)).
 - Tous les artefacts publiés sont **anonymisés** : les usagers ne sont désignés que par un identifiant
   numérique `user_id`. Sans le fichier source, la correspondance `user_id → personne` n'est pas
   reconstituable à partir du dépôt.
@@ -56,7 +57,7 @@ raw/           Données source brutes — NON versionnées (PII)
 ### Chaîne de traitement
 
 ```
-python analysis/extract.py     # raw/pretty.json -> output/markers.csv
+python analysis/extract.py     # raw/forms-*.json (ou pretty.json) -> output/markers.csv
 python analysis/analyze.py     # graphiques + output/findings.json
 python analysis/build_map.py   # output/map.html (carte interactive)
 python analysis/people.py      # classements par personne (anonymisés)
@@ -66,10 +67,12 @@ Les scripts exploratoires sont documentés dans [`experiments/README.md`](experi
 
 ## Avertissements sur les données
 
-- Le fichier source est **encodé en UTF-16**.
-- Les accents sont corrompus dans les données source (transcodage avec perte en amont touchant 78 % des
-  marqueurs). Une réparation au mieux est appliquée (`analysis/textrepair.py`) ; elle est **cosmétique**
-  et n'affecte jamais les comptes, les j'aime, les coordonnées ni les catégories.
+- L'extrait courant (`raw/forms-*.json`) est en **UTF-8, accents intacts**. Le chargeur commun
+  (`analysis/dataload.py`) détecte l'encodage et normalise les types, si bien qu'il lit aussi l'ancien
+  extrait `raw/pretty.json` (UTF-16).
+- L'ancien extrait UTF-16 avait des **accents corrompus** en amont (transcodage avec perte). Une réparation
+  cosmétique existait (`analysis/textrepair.py`); comme les données actuelles sont propres, elle est
+  désormais neutre (fonction identité) et n'a jamais touché les comptes, j'aime, coordonnées ni catégories.
 
 ## Avis
 
