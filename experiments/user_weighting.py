@@ -33,11 +33,33 @@ CAT_LABEL = {1: "Appreciated", 2: "Needs improvement", 3: "Missing path", 4: "To
 CAT_COLOR = {1: "#2ca02c", 2: "#e6c700", 3: "#d62fd6", 4: "#d62728"}
 
 
+def _liker_list(s):
+    """`liker_ids` is a ';'-separated string of user ids (or NaN if unliked)."""
+    if pd.isna(s) or not str(s).strip():
+        return []
+    return [int(x) for x in str(s).split(";") if x.strip()]
+
+
 def load_weighted():
-    """markers.csv + a per-user weight column `w` = 1 / user's marker count."""
+    """markers.csv + two one-person-one-vote weight columns:
+
+      - `w`        = 1 / user's marker count (de-biases prolific posters)
+      - `liked_w`  = sum over this marker's likers of 1 / (that liker's total
+                     likes given), so a like-spam account (someone who likes
+                     hundreds of markers) can't out-endorse a casual liker any
+                     more than a marker-spam account can out-vote a casual
+                     poster. Each liker's weight sums to 1 across everything
+                     they liked, same as `w` does across a user's markers.
+    """
     df = pd.read_csv(MARKERS)
     df["user_marker_count"] = df.groupby("user_id")["user_id"].transform("count")
     df["w"] = 1.0 / df["user_marker_count"]
+
+    likers = df["liker_ids"].apply(_liker_list)
+    liker_total_likes = pd.Series([u for lst in likers for u in lst]).value_counts()
+    df["liked_w"] = likers.apply(
+        lambda lst: sum(1.0 / liker_total_likes[u] for u in lst) if lst else 0.0
+    )
     return df
 
 
